@@ -8,20 +8,24 @@
 import Foundation
 
 struct NewsModel: Codable {
-    let Data: [Datum]
-}
-    enum CodingKeys: String, CodingKey {
-
-        case data = "Data"
- 
-    }
     
+    let objects: String?
 
-    struct Datum: Codable {
-        
-        let body: String
-        
 
-        
     }
+
+
+//struct NewsModel: Codable {
+//    let Data: [Datum]
+//}
+//    enum CodingKeys: String, CodingKey {
+//    case data = "Data"
+//
+//    }
+//
+//struct Datum: Codable {
+//
+//        let body: String
+//
+//    }
 

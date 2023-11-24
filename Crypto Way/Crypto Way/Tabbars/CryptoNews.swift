@@ -31,7 +31,7 @@ class CryptoNews: UIViewController, UITableViewDelegate {
         view.backgroundColor = .brown
   
         NetworkManager().getNews { [weak self] news in
-            self?.news = news.data
+            self?.news = news.objects
             self?.tableOfNews.reloadData()
 
         } errorClosure: { error in

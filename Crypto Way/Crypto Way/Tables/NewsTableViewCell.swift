@@ -80,8 +80,8 @@ class NewsTableViewCell: UITableViewCell {
         contentView.addSubview(nameOfDescription)
 
     }
-    func set(news_name: NewsModel) {
-        nameOfTitle.text = news_name.title
-        nameOfDescription.text = news_name.body
-    }
+        func set(news_name: NewsModel) {
+            nameOfTitle.text = news_name.title
+            nameOfDescription.text = news_name.body
+        }
 }
