@@ -19,7 +19,6 @@ extension BackendApi: TargetType {
         case .getRate:
             return URL(string: "https://api.binance.com")!
         case .getNews:
-//            return URL(string: "https://newsdata.io/api/1")!
             return URL(string: "https://min-api.cryptocompare.com/data/v2")!
 
         }
@@ -30,8 +29,7 @@ extension BackendApi: TargetType {
         case .getRate:
             return "/api/v3/ticker/price"
         case .getNews:
-//            return "/crypto"
-            return "/news/?lang=EN"
+            return "/news/"
 
         }
     }
@@ -60,7 +58,6 @@ extension BackendApi: TargetType {
         case .getRate:
                 return nil
         case .getNews:
-//            params["apikey"] = "pub_33275c809b0cb8041bceaf3ca885a5ece5d5e"
             params["api_key"] = "4ab84581cc7e2644b53e7064a1a4dbc8ec38baf042fc04651626eba3dd2839ef"
         }
         return params

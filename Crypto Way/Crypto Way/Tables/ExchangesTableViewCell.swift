@@ -58,7 +58,7 @@ class ExchangesTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         makeLayouts()
         makeConstraints()
-        self.backgroundColor = UIColor(red: 188/250, green: 161/250, blue: 143/250, alpha: 1)
+        self.backgroundColor = UIColor(red: 150/250, green: 161/250, blue: 143/250, alpha: 1)
         self.layer.borderWidth = 1
         self.layer.borderColor = UIColor.yellow.cgColor
         self.layer.masksToBounds = true
@@ -84,8 +84,14 @@ class ExchangesTableViewCell: UITableViewCell {
         phoneOfExchange.snp.makeConstraints { make in
             make.top.equalTo(addressOfExchange.snp.bottom).offset(20)
             make.trailing.equalTo(contentView.safeAreaLayoutGuide).offset(-20)
+
         }
         
+    }
+    func set(exchange_name: ExchangesModel) {
+        nameOfExchange.text = exchange_name.nameOfExchange
+        addressOfExchange.text = exchange_name.address
+        phoneOfExchange.text = exchange_name.phoneOfExchange
     }
 
 }

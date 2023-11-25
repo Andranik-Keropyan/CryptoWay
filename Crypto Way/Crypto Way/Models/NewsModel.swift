@@ -7,25 +7,27 @@
 
 import Foundation
 
-struct NewsModel: Codable {
-    
-    let objects: String?
+struct NewsModel: Decodable {
 
+    let data: [Datum]
+
+    enum CodingKeys: String, CodingKey {
+
+        case data = "Data"
 
     }
+}
+
+struct Datum: Decodable {
+
+    let title: String?
+    let body: String?
 
 
-//struct NewsModel: Codable {
-//    let Data: [Datum]
-//}
-//    enum CodingKeys: String, CodingKey {
-//    case data = "Data"
-//
-//    }
-//
-//struct Datum: Codable {
-//
-//        let body: String
-//
-//    }
+    enum CodingKeys: String, CodingKey {
+        case title,body
+    }
+}
+
+
 

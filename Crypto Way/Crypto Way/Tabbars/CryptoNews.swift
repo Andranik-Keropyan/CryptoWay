@@ -12,6 +12,9 @@ class CryptoNews: UIViewController, UITableViewDelegate {
    
     var news = [NewsModel] ()
     var updatedNews = [String] ()
+    var news1 = [Datum] ()
+    var  updateNewsInfo: [Datum] = []
+
     
     
     let tableOfNews: UITableView = {
@@ -31,8 +34,12 @@ class CryptoNews: UIViewController, UITableViewDelegate {
         view.backgroundColor = .brown
   
         NetworkManager().getNews { [weak self] news in
-            self?.news = news.objects
+            self?.news1 = news.data
             self?.tableOfNews.reloadData()
+//            for i in news.data {
+//                self?.updateNewsInfo.append(i)
+//
+//            }
 
         } errorClosure: { error in
             print(error)
@@ -54,7 +61,9 @@ class CryptoNews: UIViewController, UITableViewDelegate {
 
 extension CryptoNews: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        news.count
+        updateNewsInfo.count
+//        news.count
+
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

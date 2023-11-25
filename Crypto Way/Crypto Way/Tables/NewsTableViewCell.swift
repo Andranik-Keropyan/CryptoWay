@@ -12,6 +12,10 @@ class NewsTableViewCell: UITableViewCell {
 
     static let id = String(describing: NewsTableViewCell.self)
     
+    var newElements = [Datum] ()
+    
+    
+    
     lazy var nameOfTitle: UILabel = {
         let title = UILabel()
         title.backgroundColor = .systemMint
@@ -81,7 +85,8 @@ class NewsTableViewCell: UITableViewCell {
 
     }
         func set(news_name: NewsModel) {
-            nameOfTitle.text = news_name.title
-            nameOfDescription.text = news_name.body
+//            nameOfTitle.text = news_name
+//            nameOfTitle.text = news_name.data.first?.body
+//            
         }
 }
