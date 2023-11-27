@@ -15,11 +15,10 @@ class CryptoNews: UIViewController, UITableViewDelegate {
     var news1 = [Datum] ()
     var  updateNewsInfo: [Datum] = []
 
-    
-    
     let tableOfNews: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .white
+        tableView.separatorStyle = .none
         tableView.register(NewsTableViewCell.self, forCellReuseIdentifier: NewsTableViewCell.id)
         return tableView
     }()
@@ -36,18 +35,12 @@ class CryptoNews: UIViewController, UITableViewDelegate {
         NetworkManager().getNews { [weak self] news in
             self?.news1 = news.data
             self?.tableOfNews.reloadData()
-//            for i in news.data {
-//                self?.updateNewsInfo.append(i)
-//
-//            }
 
         } errorClosure: { error in
             print(error)
         }
     }
 
-  
-    
     func makeLayouts() {
         self.view.addSubview(tableOfNews)
     }
@@ -61,22 +54,24 @@ class CryptoNews: UIViewController, UITableViewDelegate {
 
 extension CryptoNews: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        updateNewsInfo.count
-//        news.count
+        news1.count
 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.id, for: indexPath)
         guard let newsCell = cell as? NewsTableViewCell else { return UITableViewCell() }
-        newsCell.set(news_name: news[indexPath.row] )
-        print(news)
+        newsCell.set(news_name: news1[indexPath.row] )
         return newsCell
     }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        UIView.animate(withDuration: 0.2, animations: {
+        cell!.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)}, completion: { finished in
+        UIView.animate(withDuration: 0.2) { cell!.transform = .identity}
+    })
+        tableOfNews.deselectRow(at: indexPath, animated: true)
     }
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 20
-    }
+
 }

@@ -15,10 +15,10 @@
 		04461FCD2B0B7008005A7FA3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04461FCB2B0B7008005A7FA3 /* LaunchScreen.storyboard */; };
 		04461FD62B0B7021005A7FA3 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 04461FD52B0B7021005A7FA3 /* SnapKit */; };
 		04461FD92B0B7073005A7FA3 /* GeneralTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04461FD82B0B7073005A7FA3 /* GeneralTabBar.swift */; };
-		04461FDB2B0B70C1005A7FA3 /* CryptoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04461FDA2B0B70C1005A7FA3 /* CryptoList.swift */; };
-		04461FDD2B0B7128005A7FA3 /* ListOfExchanges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04461FDC2B0B7128005A7FA3 /* ListOfExchanges.swift */; };
-		04461FDF2B0B7142005A7FA3 /* CryptoNews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04461FDE2B0B7142005A7FA3 /* CryptoNews.swift */; };
-		04461FE12B0B715A005A7FA3 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04461FE02B0B715A005A7FA3 /* Map.swift */; };
+		04461FDB2B0B70C1005A7FA3 /* CryptoListTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04461FDA2B0B70C1005A7FA3 /* CryptoListTabBar.swift */; };
+		04461FDD2B0B7128005A7FA3 /* ListOfExchangesTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04461FDC2B0B7128005A7FA3 /* ListOfExchangesTabBar.swift */; };
+		04461FDF2B0B7142005A7FA3 /* CryptoNewsTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04461FDE2B0B7142005A7FA3 /* CryptoNewsTabBar.swift */; };
+		04461FE12B0B715A005A7FA3 /* MapTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04461FE02B0B715A005A7FA3 /* MapTabBar.swift */; };
 		04461FE42B0B7C9B005A7FA3 /* ListCryptoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04461FE32B0B7C9B005A7FA3 /* ListCryptoViewCell.swift */; };
 		04461FEB2B0BA048005A7FA3 /* CryptoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04461FEA2B0BA048005A7FA3 /* CryptoModel.swift */; };
 		04461FED2B0BA059005A7FA3 /* BackendAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04461FEC2B0BA059005A7FA3 /* BackendAPI.swift */; };
@@ -31,6 +31,8 @@
 		04461FFC2B0CFB57005A7FA3 /* WrapperModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04461FFB2B0CFB57005A7FA3 /* WrapperModel.swift */; };
 		04461FFE2B0CFDFB005A7FA3 /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04461FFD2B0CFDFB005A7FA3 /* NewsModel.swift */; };
 		04549A652B111CE0003D0FA5 /* ExchangesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04549A642B111CE0003D0FA5 /* ExchangesModel.swift */; };
+		04549A842B1277A5003D0FA5 /* GoogleMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 04549A832B1277A5003D0FA5 /* GoogleMaps */; };
+		04549A872B1281A9003D0FA5 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04549A862B1281A9003D0FA5 /* String.swift */; };
 		04CC69CC2B0D29860043D292 /* ExchangesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC69CB2B0D29860043D292 /* ExchangesTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,10 +46,10 @@
 		04461FCC2B0B7008005A7FA3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04461FCE2B0B7008005A7FA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04461FD82B0B7073005A7FA3 /* GeneralTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralTabBar.swift; sourceTree = "<group>"; };
-		04461FDA2B0B70C1005A7FA3 /* CryptoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoList.swift; sourceTree = "<group>"; };
-		04461FDC2B0B7128005A7FA3 /* ListOfExchanges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfExchanges.swift; sourceTree = "<group>"; };
-		04461FDE2B0B7142005A7FA3 /* CryptoNews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoNews.swift; sourceTree = "<group>"; };
-		04461FE02B0B715A005A7FA3 /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
+		04461FDA2B0B70C1005A7FA3 /* CryptoListTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoListTabBar.swift; sourceTree = "<group>"; };
+		04461FDC2B0B7128005A7FA3 /* ListOfExchangesTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListOfExchangesTabBar.swift; sourceTree = "<group>"; };
+		04461FDE2B0B7142005A7FA3 /* CryptoNewsTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoNewsTabBar.swift; sourceTree = "<group>"; };
+		04461FE02B0B715A005A7FA3 /* MapTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTabBar.swift; sourceTree = "<group>"; };
 		04461FE32B0B7C9B005A7FA3 /* ListCryptoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCryptoViewCell.swift; sourceTree = "<group>"; };
 		04461FEA2B0BA048005A7FA3 /* CryptoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoModel.swift; sourceTree = "<group>"; };
 		04461FEC2B0BA059005A7FA3 /* BackendAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendAPI.swift; sourceTree = "<group>"; };
@@ -56,6 +58,7 @@
 		04461FFB2B0CFB57005A7FA3 /* WrapperModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapperModel.swift; sourceTree = "<group>"; };
 		04461FFD2B0CFDFB005A7FA3 /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		04549A642B111CE0003D0FA5 /* ExchangesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangesModel.swift; sourceTree = "<group>"; };
+		04549A862B1281A9003D0FA5 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		04CC69CB2B0D29860043D292 /* ExchangesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangesTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,6 +69,7 @@
 			files = (
 				04461FF82B0BA741005A7FA3 /* RxMoya in Frameworks */,
 				04461FF22B0BA741005A7FA3 /* CombineMoya in Frameworks */,
+				04549A842B1277A5003D0FA5 /* GoogleMaps in Frameworks */,
 				04461FF62B0BA741005A7FA3 /* ReactiveMoya in Frameworks */,
 				04461FD62B0B7021005A7FA3 /* SnapKit in Frameworks */,
 				04461FF42B0BA741005A7FA3 /* Moya in Frameworks */,
@@ -95,8 +99,9 @@
 			isa = PBXGroup;
 			children = (
 				04461FE92B0BA02B005A7FA3 /* Models */,
-				04461FE22B0B7C50005A7FA3 /* Tables */,
+				04461FE22B0B7C50005A7FA3 /* Cells */,
 				04461FD72B0B702A005A7FA3 /* Tabbars */,
+				04549A852B12818F003D0FA5 /* Extensions */,
 				04461FC02B0B7003005A7FA3 /* AppDelegate.swift */,
 				04461FC22B0B7003005A7FA3 /* SceneDelegate.swift */,
 				04461FC42B0B7003005A7FA3 /* ViewController.swift */,
@@ -112,22 +117,22 @@
 			isa = PBXGroup;
 			children = (
 				04461FD82B0B7073005A7FA3 /* GeneralTabBar.swift */,
-				04461FDA2B0B70C1005A7FA3 /* CryptoList.swift */,
-				04461FDC2B0B7128005A7FA3 /* ListOfExchanges.swift */,
-				04461FDE2B0B7142005A7FA3 /* CryptoNews.swift */,
-				04461FE02B0B715A005A7FA3 /* Map.swift */,
+				04461FDA2B0B70C1005A7FA3 /* CryptoListTabBar.swift */,
+				04461FDC2B0B7128005A7FA3 /* ListOfExchangesTabBar.swift */,
+				04461FDE2B0B7142005A7FA3 /* CryptoNewsTabBar.swift */,
+				04461FE02B0B715A005A7FA3 /* MapTabBar.swift */,
 			);
 			path = Tabbars;
 			sourceTree = "<group>";
 		};
-		04461FE22B0B7C50005A7FA3 /* Tables */ = {
+		04461FE22B0B7C50005A7FA3 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				04461FE32B0B7C9B005A7FA3 /* ListCryptoViewCell.swift */,
-				04461FF92B0CF9B8005A7FA3 /* NewsTableViewCell.swift */,
 				04CC69CB2B0D29860043D292 /* ExchangesTableViewCell.swift */,
+				04461FF92B0CF9B8005A7FA3 /* NewsTableViewCell.swift */,
 			);
-			path = Tables;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		04461FE92B0BA02B005A7FA3 /* Models */ = {
@@ -141,6 +146,14 @@
 				04549A642B111CE0003D0FA5 /* ExchangesModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		04549A852B12818F003D0FA5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				04549A862B1281A9003D0FA5 /* String.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,6 +178,7 @@
 				04461FF32B0BA741005A7FA3 /* Moya */,
 				04461FF52B0BA741005A7FA3 /* ReactiveMoya */,
 				04461FF72B0BA741005A7FA3 /* RxMoya */,
+				04549A832B1277A5003D0FA5 /* GoogleMaps */,
 			);
 			productName = "Crypto Way";
 			productReference = 04461FBD2B0B7003005A7FA3 /* Crypto Way.app */;
@@ -197,6 +211,7 @@
 			packageReferences = (
 				04461FD42B0B7021005A7FA3 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				04461FF02B0BA741005A7FA3 /* XCRemoteSwiftPackageReference "Moya" */,
+				04549A822B1277A5003D0FA5 /* XCRemoteSwiftPackageReference "GoogleMaps-SP" */,
 			);
 			productRefGroup = 04461FBE2B0B7003005A7FA3 /* Products */;
 			projectDirPath = "";
@@ -232,16 +247,17 @@
 				04461FD92B0B7073005A7FA3 /* GeneralTabBar.swift in Sources */,
 				04461FC52B0B7003005A7FA3 /* ViewController.swift in Sources */,
 				04461FFA2B0CF9B8005A7FA3 /* NewsTableViewCell.swift in Sources */,
-				04461FE12B0B715A005A7FA3 /* Map.swift in Sources */,
+				04461FE12B0B715A005A7FA3 /* MapTabBar.swift in Sources */,
 				04461FED2B0BA059005A7FA3 /* BackendAPI.swift in Sources */,
 				04461FEB2B0BA048005A7FA3 /* CryptoModel.swift in Sources */,
 				04461FFE2B0CFDFB005A7FA3 /* NewsModel.swift in Sources */,
 				04549A652B111CE0003D0FA5 /* ExchangesModel.swift in Sources */,
+				04549A872B1281A9003D0FA5 /* String.swift in Sources */,
 				04461FC12B0B7003005A7FA3 /* AppDelegate.swift in Sources */,
-				04461FDD2B0B7128005A7FA3 /* ListOfExchanges.swift in Sources */,
+				04461FDD2B0B7128005A7FA3 /* ListOfExchangesTabBar.swift in Sources */,
 				04461FC32B0B7003005A7FA3 /* SceneDelegate.swift in Sources */,
-				04461FDF2B0B7142005A7FA3 /* CryptoNews.swift in Sources */,
-				04461FDB2B0B70C1005A7FA3 /* CryptoList.swift in Sources */,
+				04461FDF2B0B7142005A7FA3 /* CryptoNewsTabBar.swift in Sources */,
+				04461FDB2B0B70C1005A7FA3 /* CryptoListTabBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,6 +493,14 @@
 				minimumVersion = 15.0.0;
 			};
 		};
+		04549A822B1277A5003D0FA5 /* XCRemoteSwiftPackageReference "GoogleMaps-SP" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/YAtechnologies/GoogleMaps-SP.git";
+			requirement = {
+				kind = exactVersion;
+				version = 7.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -504,6 +528,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 04461FF02B0BA741005A7FA3 /* XCRemoteSwiftPackageReference "Moya" */;
 			productName = RxMoya;
+		};
+		04549A832B1277A5003D0FA5 /* GoogleMaps */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04549A822B1277A5003D0FA5 /* XCRemoteSwiftPackageReference "GoogleMaps-SP" */;
+			productName = GoogleMaps;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

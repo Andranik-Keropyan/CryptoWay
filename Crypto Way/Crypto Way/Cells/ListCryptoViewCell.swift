@@ -12,9 +12,18 @@ class ListCryptoViewCell: UITableViewCell {
     
     static let id = String(describing: ListCryptoViewCell.self)
     
+    lazy var cellView: UIView = {
+           let view = UIView()
+        view.backgroundColor = .clear
+        view.layer.cornerRadius = 10
+        view.backgroundColor = UIColor.hexStringToUIColor(hex: "#B5838D")
+        view.translatesAutoresizingMaskIntoConstraints = false
+           return view
+       }()
+    
     lazy var nameOfFiat: UILabel = {
         let fiat = UILabel()
-        fiat.backgroundColor = .systemMint
+        fiat.backgroundColor = .clear
         fiat.text = ""
         fiat.isUserInteractionEnabled = true
         fiat.layer.masksToBounds = true
@@ -25,7 +34,7 @@ class ListCryptoViewCell: UITableViewCell {
     
     lazy var nameOfCrypto: UILabel = {
         let crypto = UILabel()
-        crypto.backgroundColor = .systemMint
+        crypto.backgroundColor = .clear
         crypto.text = "name of crypto"
         crypto.isUserInteractionEnabled = true
         crypto.layer.masksToBounds = true
@@ -36,7 +45,7 @@ class ListCryptoViewCell: UITableViewCell {
     
     lazy var rateOfCrypto: UILabel = {
         let rate = UILabel()
-        rate.backgroundColor = .systemMint
+        rate.backgroundColor = .clear
         rate.text = "rate of crypto"
         rate.isUserInteractionEnabled = true
         rate.layer.masksToBounds = true
@@ -45,34 +54,42 @@ class ListCryptoViewCell: UITableViewCell {
         return rate
     }()
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        makeConstraints()
         makeLayouts()
-        self.backgroundColor = UIColor(red: 188/250, green: 161/250, blue: 143/250, alpha: 1)
-        self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor.yellow.cgColor
+        makeConstraints()
+        self.selectionStyle = .none
+        self.backgroundColor = .clear
         self.layer.masksToBounds = true
-        self.layer.cornerRadius = 12
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func makeLayouts() {
+        contentView.addSubview(cellView)
+        cellView.addSubview(nameOfFiat)
+        cellView.addSubview(nameOfCrypto)
+        cellView.addSubview(rateOfCrypto)
+    }
+    
     func makeConstraints() {
+        cellView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(15)
+            make.trailing.equalToSuperview().offset(-15)
+            make.top.equalToSuperview().offset(10)
+            make.bottom.equalToSuperview().offset(-10)
+        }
+        
         nameOfCrypto.snp.makeConstraints { make in
             make.leading.top.equalTo(contentView.safeAreaLayoutGuide).offset(20)
             make.height.equalTo(20)
@@ -87,18 +104,10 @@ class ListCryptoViewCell: UITableViewCell {
             make.top.equalTo(contentView.safeAreaLayoutGuide).offset(20)
             make.height.equalTo(20)
         }
-        
-        
     }
-    func makeLayouts() {
-        contentView.addSubview(nameOfFiat)
-        contentView.addSubview(nameOfCrypto)
-        contentView.addSubview(rateOfCrypto)
-    }
-    
+  
     func set(rate_name: CryptoModel) {
         nameOfCrypto.text = rate_name.symbol
         rateOfCrypto.text = rate_name.price
     }
-    
 }

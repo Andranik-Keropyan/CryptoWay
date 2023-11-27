@@ -14,7 +14,6 @@ class ExchangesModel {
     var Longitude: Double
     var Latitude: Double
 
-    
     init(nameOfExchange: String, address: String,phoneOfExchange: String, Longitude: Double, Latitude: Double) {
         self.nameOfExchange = nameOfExchange
         self.address = address

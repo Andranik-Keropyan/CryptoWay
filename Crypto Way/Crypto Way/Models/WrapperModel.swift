@@ -11,6 +11,5 @@ struct Wrapper<T: Decodable>: Decodable {
 
     let Data: [T]
     
-
     }
 

@@ -40,8 +40,6 @@ class NetworkManager {
             switch result {
             case .success(let response):
                 do {
-//                    let string = String(data: response.data,encoding: .utf8)
-//                    print(string)
                     let data = try JSONDecoder().decode(NewsModel.self, from: response.data)
                     success?(data)
                     print(data)
@@ -50,7 +48,6 @@ class NetworkManager {
                     errorClosure?(error.localizedDescription)
                     print(error)
                 }
-                
                 
             case .failure(let error):
                 print("Ошибка: \(error)")

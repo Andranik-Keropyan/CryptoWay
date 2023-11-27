@@ -12,9 +12,8 @@ struct NewsModel: Decodable {
     let data: [Datum]
 
     enum CodingKeys: String, CodingKey {
-
+        
         case data = "Data"
-
     }
 }
 
@@ -22,10 +21,10 @@ struct Datum: Decodable {
 
     let title: String?
     let body: String?
-
+    let imageurl: URL
 
     enum CodingKeys: String, CodingKey {
-        case title,body
+        case title,body,imageurl
     }
 }
 

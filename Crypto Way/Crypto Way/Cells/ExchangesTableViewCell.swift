@@ -11,9 +11,17 @@ class ExchangesTableViewCell: UITableViewCell {
     
     static let id = String(describing: ExchangesTableViewCell.self)
     
+    lazy var cellView: UIView = {
+           let view = UIView()
+           view.backgroundColor = UIColor.hexStringToUIColor(hex: "#B5838D")
+           view.layer.cornerRadius = 10
+           view.translatesAutoresizingMaskIntoConstraints = false
+           return view
+       }()
+    
     lazy var nameOfExchange: UILabel = {
         let Exchange = UILabel()
-        Exchange.backgroundColor = .systemMint
+        Exchange.backgroundColor = .clear
         Exchange.text = "name of Exchange"
         Exchange.isUserInteractionEnabled = true
         Exchange.layer.masksToBounds = true
@@ -24,7 +32,7 @@ class ExchangesTableViewCell: UITableViewCell {
     
     lazy var addressOfExchange: UILabel = {
         let address = UILabel()
-        address.backgroundColor = .systemMint
+        address.backgroundColor = .clear
         address.text = "address"
         address.isUserInteractionEnabled = true
         address.layer.masksToBounds = true
@@ -35,7 +43,7 @@ class ExchangesTableViewCell: UITableViewCell {
     
     lazy var phoneOfExchange: UILabel = {
         let phone = UILabel()
-        phone.backgroundColor = .systemMint
+        phone.backgroundColor = .clear
         phone.text = "phone"
         phone.isUserInteractionEnabled = true
         phone.layer.masksToBounds = true
@@ -44,11 +52,6 @@ class ExchangesTableViewCell: UITableViewCell {
         return phone
     }()
     
-    
-    
-    
-
-
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -58,40 +61,41 @@ class ExchangesTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         makeLayouts()
         makeConstraints()
-        self.backgroundColor = UIColor(red: 150/250, green: 161/250, blue: 143/250, alpha: 1)
-        self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor.yellow.cgColor
+        self.selectionStyle = .none
+        self.backgroundColor = .clear
         self.layer.masksToBounds = true
-        self.layer.cornerRadius = 12
     }
+    
     func makeLayouts() {
-        contentView.addSubview(nameOfExchange)
-        contentView.addSubview(addressOfExchange)
-        contentView.addSubview(phoneOfExchange)
-
-        
+        addSubview(cellView)
+        cellView.addSubview(nameOfExchange)
+        cellView.addSubview(addressOfExchange)
+        cellView.addSubview(phoneOfExchange)
     }
+    
     func makeConstraints() {
+        cellView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(15)
+            make.trailing.equalToSuperview().offset(-15)
+            make.top.equalToSuperview().offset(15)
+            make.bottom.equalToSuperview().offset(-15)
+        }
         nameOfExchange.snp.makeConstraints { make in
             make.leading.top.equalTo(contentView.safeAreaLayoutGuide).offset(20)
-            
-        }
-        addressOfExchange.snp.makeConstraints { make in
-            make.top.equalTo(contentView.safeAreaLayoutGuide).offset(20)
-            make.trailing.equalTo(contentView.safeAreaLayoutGuide).offset(-20)
-
         }
         phoneOfExchange.snp.makeConstraints { make in
-            make.top.equalTo(addressOfExchange.snp.bottom).offset(20)
+            make.top.equalTo(contentView.safeAreaLayoutGuide).offset(20)
             make.trailing.equalTo(contentView.safeAreaLayoutGuide).offset(-20)
-
         }
-        
+        addressOfExchange.snp.makeConstraints { make in
+            make.top.equalTo(phoneOfExchange.snp.bottom).offset(20)
+            make.trailing.equalTo(contentView.safeAreaLayoutGuide).offset(-20)
+        }
     }
+    
     func set(exchange_name: ExchangesModel) {
         nameOfExchange.text = exchange_name.nameOfExchange
         addressOfExchange.text = exchange_name.address
         phoneOfExchange.text = exchange_name.phoneOfExchange
     }
-
 }

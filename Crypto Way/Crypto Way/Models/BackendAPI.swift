@@ -72,8 +72,4 @@ extension BackendApi: TargetType {
        
         }
     }
-    
-    
-    
-    
 }

@@ -30,16 +30,11 @@ class GeneralTabBar: UITabBarController {
         let thirdVC = CryptoNews()
         controllers.append(UINavigationController(rootViewController: thirdVC))
         thirdVC.tabBarItem = .init(title: "News", image: .init(systemName: "person"), tag: 2)
-        
+
         let lastVC = MapController()
         controllers.append(UINavigationController(rootViewController: lastVC))
         lastVC.tabBarItem = .init(title: "Map", image: .init(systemName: "person"), tag: 3)
-        
+
         self.viewControllers = controllers
     }
-    
-    
-
-   
-
 }
