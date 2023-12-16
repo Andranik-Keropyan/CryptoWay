@@ -22,7 +22,7 @@ class MapController: UIViewController, GMSMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(googleMap)
-        view.backgroundColor = .white
+        view.backgroundColor = .lightGray
         makeconstraints()
         // Do any additional setup after loading the view.
     }
@@ -41,7 +41,8 @@ class MapController: UIViewController, GMSMapViewDelegate {
 
     func makeconstraints() {
         googleMap.snp.makeConstraints { make in
-            make.edges.equalToSuperview().offset(0)
+            make.leading.top.trailing.equalToSuperview().offset(0)
+            make.bottom.equalToSuperview().offset(-85)
         }
     }
 }

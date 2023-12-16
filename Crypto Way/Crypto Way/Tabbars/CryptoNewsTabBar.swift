@@ -17,11 +17,12 @@ class CryptoNews: UIViewController, UITableViewDelegate {
 
     let tableOfNews: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .white
         tableView.separatorStyle = .none
+        tableView.backgroundColor = UIColor.hexStringToUIColor(hex: "#343434")
         tableView.register(NewsTableViewCell.self, forCellReuseIdentifier: NewsTableViewCell.id)
         return tableView
     }()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,9 +30,6 @@ class CryptoNews: UIViewController, UITableViewDelegate {
         tableOfNews.dataSource = self
         makeLayouts()
         makeConstraints()
-        
-        view.backgroundColor = .brown
-  
         NetworkManager().getNews { [weak self] news in
             self?.news1 = news.data
             self?.tableOfNews.reloadData()
@@ -40,6 +38,8 @@ class CryptoNews: UIViewController, UITableViewDelegate {
             print(error)
         }
     }
+    
+
 
     func makeLayouts() {
         self.view.addSubview(tableOfNews)
@@ -73,5 +73,20 @@ extension CryptoNews: UITableViewDataSource {
     })
         tableOfNews.deselectRow(at: indexPath, animated: true)
     }
+    
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+            let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 40))
+            let label = UILabel()
+            label.frame = CGRect.init(x: 5, y: 5, width: headerView.frame.width-15, height: headerView.frame.height-15)
+            label.text = "Crypto News"
+            label.backgroundColor = UIColor.hexStringToUIColor(hex: "#343434")
+            label.layer.cornerRadius = 10
+            label.font = UIFont.boldSystemFont(ofSize: 25)
+            label.textAlignment = .center
+            label.textColor = .white
+            headerView.addSubview(label)
+            return headerView
+        }
 
 }

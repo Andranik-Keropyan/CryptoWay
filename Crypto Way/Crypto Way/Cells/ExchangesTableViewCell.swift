@@ -13,8 +13,10 @@ class ExchangesTableViewCell: UITableViewCell {
     
     lazy var cellView: UIView = {
            let view = UIView()
-           view.backgroundColor = UIColor.hexStringToUIColor(hex: "#B5838D")
+//           view.backgroundColor = UIColor.hexStringToUIColor(hex: "#050301")
            view.layer.cornerRadius = 10
+            view.layer.borderWidth = 1.0
+            view.layer.borderColor = UIColor.green.cgColor
            view.translatesAutoresizingMaskIntoConstraints = false
            return view
        }()
@@ -23,6 +25,7 @@ class ExchangesTableViewCell: UITableViewCell {
         let Exchange = UILabel()
         Exchange.backgroundColor = .clear
         Exchange.text = "name of Exchange"
+        Exchange.textColor = .white
         Exchange.isUserInteractionEnabled = true
         Exchange.layer.masksToBounds = true
         Exchange.layer.cornerRadius = 8
@@ -34,6 +37,7 @@ class ExchangesTableViewCell: UITableViewCell {
         let address = UILabel()
         address.backgroundColor = .clear
         address.text = "address"
+        address.textColor = .white
         address.isUserInteractionEnabled = true
         address.layer.masksToBounds = true
         address.layer.cornerRadius = 8
@@ -45,6 +49,7 @@ class ExchangesTableViewCell: UITableViewCell {
         let phone = UILabel()
         phone.backgroundColor = .clear
         phone.text = "phone"
+        phone.textColor = .white
         phone.isUserInteractionEnabled = true
         phone.layer.masksToBounds = true
         phone.layer.cornerRadius = 8
@@ -73,6 +78,8 @@ class ExchangesTableViewCell: UITableViewCell {
         cellView.addSubview(phoneOfExchange)
     }
     
+
+    
     func makeConstraints() {
         cellView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(15)
@@ -81,15 +88,17 @@ class ExchangesTableViewCell: UITableViewCell {
             make.bottom.equalToSuperview().offset(-15)
         }
         nameOfExchange.snp.makeConstraints { make in
-            make.leading.top.equalTo(contentView.safeAreaLayoutGuide).offset(20)
+            make.leading.top.equalTo(contentView.safeAreaLayoutGuide).offset(30)
         }
         phoneOfExchange.snp.makeConstraints { make in
-            make.top.equalTo(contentView.safeAreaLayoutGuide).offset(20)
+            make.top.equalTo(contentView.safeAreaLayoutGuide).offset(30)
+            make.trailing.equalTo(contentView.safeAreaLayoutGuide).offset(-30)
             make.trailing.equalTo(contentView.safeAreaLayoutGuide).offset(-20)
         }
         addressOfExchange.snp.makeConstraints { make in
             make.top.equalTo(phoneOfExchange.snp.bottom).offset(20)
-            make.trailing.equalTo(contentView.safeAreaLayoutGuide).offset(-20)
+            make.centerX.equalTo(200)
+//            make.trailing.equalTo(contentView.safeAreaLayoutGuide).offset(-20)
         }
     }
     

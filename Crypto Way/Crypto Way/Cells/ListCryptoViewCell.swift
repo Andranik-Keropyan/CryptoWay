@@ -11,20 +11,26 @@ import SnapKit
 class ListCryptoViewCell: UITableViewCell {
     
     static let id = String(describing: ListCryptoViewCell.self)
+        
+    func configure(imageName: String) {
+        iconImageView.image = UIImage(named: imageName)
+       }
     
     lazy var cellView: UIView = {
-           let view = UIView()
-        view.backgroundColor = .clear
+        let view = UIView()
+//           view.backgroundColor = UIColor.hexStringToUIColor(hex: "#050301")
         view.layer.cornerRadius = 10
-        view.backgroundColor = UIColor.hexStringToUIColor(hex: "#B5838D")
+         view.layer.borderWidth = 1.0
+         view.layer.borderColor = UIColor.green.cgColor
         view.translatesAutoresizingMaskIntoConstraints = false
-           return view
+        return view
        }()
     
     lazy var nameOfFiat: UILabel = {
         let fiat = UILabel()
         fiat.backgroundColor = .clear
         fiat.text = ""
+        fiat.textColor = .white
         fiat.isUserInteractionEnabled = true
         fiat.layer.masksToBounds = true
         fiat.layer.cornerRadius = 8
@@ -36,6 +42,7 @@ class ListCryptoViewCell: UITableViewCell {
         let crypto = UILabel()
         crypto.backgroundColor = .clear
         crypto.text = "name of crypto"
+        crypto.textColor = .white
         crypto.isUserInteractionEnabled = true
         crypto.layer.masksToBounds = true
         crypto.layer.cornerRadius = 8
@@ -47,12 +54,15 @@ class ListCryptoViewCell: UITableViewCell {
         let rate = UILabel()
         rate.backgroundColor = .clear
         rate.text = "rate of crypto"
+        rate.textColor = .white
         rate.isUserInteractionEnabled = true
         rate.layer.masksToBounds = true
         rate.layer.cornerRadius = 8
         contentView.addSubview(rate)
         return rate
     }()
+    
+    var iconImageView: IconImage!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -80,6 +90,8 @@ class ListCryptoViewCell: UITableViewCell {
         cellView.addSubview(nameOfFiat)
         cellView.addSubview(nameOfCrypto)
         cellView.addSubview(rateOfCrypto)
+//        cellView.addSubview(iconImageView)
+
     }
     
     func makeConstraints() {
@@ -87,27 +99,34 @@ class ListCryptoViewCell: UITableViewCell {
             make.leading.equalToSuperview().offset(15)
             make.trailing.equalToSuperview().offset(-15)
             make.top.equalToSuperview().offset(10)
-            make.bottom.equalToSuperview().offset(-10)
+            make.bottom.equalToSuperview().offset(5)
         }
-        
+
+//        iconImageView.snp.makeConstraints { make in
+//            make.leading.top.equalTo(cellView).offset(20)
+//            make.height.width.equalTo(30)
+//        }
+
         nameOfCrypto.snp.makeConstraints { make in
-            make.leading.top.equalTo(contentView.safeAreaLayoutGuide).offset(20)
-            make.height.equalTo(20)
+            make.leading.equalTo(safeAreaLayoutGuide).offset(30)
+            make.top.equalTo(cellView).offset(20)
         }
+
         nameOfFiat.snp.makeConstraints { make in
-            make.top.equalTo(contentView.safeAreaLayoutGuide).offset(20)
+            make.top.equalTo(cellView).offset(20)
             make.leading.equalTo(nameOfCrypto.snp.trailing).offset(20)
             make.height.equalTo(20)
         }
+
         rateOfCrypto.snp.makeConstraints { make in
-            make.trailing.equalTo(contentView.safeAreaLayoutGuide).offset(-20)
-            make.top.equalTo(contentView.safeAreaLayoutGuide).offset(20)
+            make.trailing.equalTo(cellView).offset(-20)
+            make.top.equalTo(cellView).offset(20)
             make.height.equalTo(20)
         }
     }
   
     func set(rate_name: CryptoModel) {
         nameOfCrypto.text = rate_name.symbol
-        rateOfCrypto.text = rate_name.price
+        rateOfCrypto.text = "\(Float(rate_name.price)!)"
     }
 }

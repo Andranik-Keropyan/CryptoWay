@@ -14,16 +14,18 @@ class NewsTableViewCell: UITableViewCell {
     
     lazy var stackView: UIStackView = {
         let myStack = UIStackView()
-        myStack.spacing = 10
-        myStack.layer.cornerRadius = 10
+        myStack.spacing = 30
         myStack.axis = .vertical
-        myStack.backgroundColor = UIColor.hexStringToUIColor(hex: "#B5838D")
+        myStack.layer.cornerRadius = 10
+        myStack.layer.borderWidth = 1.0
+        myStack.layer.borderColor = UIColor.green.cgColor
         return myStack
     } ()
     
     lazy var nameOfTitle: UILabel = {
         let title = UILabel()
         title.numberOfLines = 0
+        title.textColor = .white
         title.textAlignment = .center
         title.font = .boldSystemFont(ofSize: 20)
         title.layer.cornerRadius = 8
@@ -32,7 +34,9 @@ class NewsTableViewCell: UITableViewCell {
     
     lazy var nameOfDescription: UILabel = {
         let description = UILabel()
+        description.textColor = .white
         description.numberOfLines = 0
+        description.textAlignment = .justified
         return description
     }()
     
@@ -43,12 +47,10 @@ class NewsTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -67,6 +69,20 @@ class NewsTableViewCell: UITableViewCell {
     func makeConstraints() {
         stackView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsets(top: 10, left: 16, bottom: 10, right: 16))
+        }
+        nameOfTitle.snp.makeConstraints { make in
+            make.leading.equalTo(stackView.snp.leading).offset(20)
+            make.trailing.equalTo(stackView.snp.trailing).offset(-20)
+            make.top.equalTo(stackView.snp.top).offset(20)
+        }
+        nameOfDescription.snp.makeConstraints { make in
+            make.leading.equalTo(stackView.snp.leading).offset(20)
+            make.trailing.equalTo(stackView.snp.trailing).offset(-20)
+        }
+        imageOfNews.snp.makeConstraints { make in
+            make.leading.equalTo(stackView.snp.leading).offset(20)
+            make.trailing.equalTo(stackView.snp.trailing).offset(-20)
+            make.height.equalTo(200)
         }
     }
     func makeLayouts() {
