@@ -62,6 +62,9 @@ extension CryptoNews: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: NewsTableViewCell.id, for: indexPath)
         guard let newsCell = cell as? NewsTableViewCell else { return UITableViewCell() }
         newsCell.set(news_name: news1[indexPath.row] )
+        newsCell.onScrollToTopTap = {
+             tableView.setContentOffset(.zero, animated: true)
+         }
         return newsCell
     }
     

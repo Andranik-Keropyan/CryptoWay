@@ -10,7 +10,21 @@ import SnapKit
 
 class NewsTableViewCell: UITableViewCell {
 
+    
+    weak var presentingViewController: UIViewController?
+    
     static let id = String(describing: NewsTableViewCell.self)
+    
+    var onScrollToTopTap: (() -> Void)?
+
+    private let scrollToTopButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Scroll to Top", for: .normal)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.addTarget(self, action: #selector(scrollToTopButtonTapped), for: .touchUpInside)
+        return button
+    }()
     
     lazy var stackView: UIStackView = {
         let myStack = UIStackView()
@@ -105,15 +119,26 @@ class NewsTableViewCell: UITableViewCell {
             make.height.equalTo(200)
 
         }
+        scrollToTopButton.snp.makeConstraints { make in
+                   make.trailing.equalTo(contentView).offset(-16)
+            make.leading.equalTo(contentView).offset(16)
+
+                   make.bottom.equalTo(contentView).offset(-16)
+               }
     }
     func makeLayouts() {
         contentView.addSubview(stackView)
         stackView.addArrangedSubview(nameOfTitle)
         stackView.addArrangedSubview(nameOfDescription)
         stackView.addArrangedSubview(imageOfNews)
+        stackView.addSubview(scrollToTopButton)
         imageOfNews.addSubview(spinner)
 
     }
+    
+    @objc private func scrollToTopButtonTapped() {
+           onScrollToTopTap?()
+       }
     
     func setImageFrom(_ url: URL) {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
@@ -134,38 +159,34 @@ class NewsTableViewCell: UITableViewCell {
         imageOfNews.image = UIImage(systemName: "gear")
     }
     
+    private func makeGestures() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(close))
+        self.addGestureRecognizer(tap)
+    }
+    
     
     private func showPopup() {
-        let popupView = PopupView(frame: CGRect(x: 0, y: 0, width: 300, height: 400))
+        let popupView = PopupView(frame: CGRect(x: -48, y: -300, width: 370, height: 630))
         popupView.titleLabel.text = nameOfTitle.text
+        popupView.descriptionLabel.text = nameOfDescription.text
+        popupView.imageOfNews.image = imageOfNews.image
 
         let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
         alert.view.addSubview(popupView)
 
-        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
-        let window = windowScene?.windows.first
+        // Set the presenting view controller
+        presentingViewController = window?.rootViewController
 
-        window?.rootViewController?.present(alert, animated: true, completion: nil)
+        presentingViewController?.present(alert, animated: true, completion: nil)
 
-        popupView.closeButton.addTarget(self, action: #selector(closePopup), for: .touchUpInside)
+        popupView.closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
     }
 
-    @objc private func closePopup() {
-        if let presentingViewController = self.findViewController() {
-            presentingViewController.dismiss(animated: true, completion: nil)
-        }
+    @objc private func close() {
+        presentingViewController?.dismiss(animated: true)
     }
+    
 
-    private func findViewController() -> UIViewController? {
-        var responder: UIResponder? = self
-        while let nextResponder = responder?.next {
-            responder = nextResponder
-            if let viewController = nextResponder as? UIViewController {
-                return viewController
-            }
-        }
-        return nil
-    }
   
     
     func set(news_name: Datum) {

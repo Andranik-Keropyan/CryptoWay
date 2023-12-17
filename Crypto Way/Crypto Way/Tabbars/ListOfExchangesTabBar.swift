@@ -68,6 +68,8 @@ extension ListOfExchanges:UITableViewDataSource {
         UIView.animate(withDuration: 0.2, animations: {
         cell!.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)}, completion: { finished in
         UIView.animate(withDuration: 0.2) { cell!.transform = .identity}
+            sleep(2)
+
     })
         tableOfExchanges.deselectRow(at: indexPath, animated: true)
         let mapNAV = self.tabBarController?.viewControllers?.last as? UINavigationController
@@ -86,7 +88,7 @@ extension ListOfExchanges:UITableViewDataSource {
             let headerView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.width, height: 50))
             let label = UILabel()
             label.frame = CGRect.init(x: 5, y: 5, width: headerView.frame.width-15, height: headerView.frame.height-15)
-            label.text = "Crypto Exchages"
+            label.text = "Crypto Exchanges"
             label.backgroundColor = UIColor.hexStringToUIColor(hex: "#343434")
             label.layer.cornerRadius = 10
             label.font = UIFont.boldSystemFont(ofSize: 25)

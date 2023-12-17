@@ -42,12 +42,27 @@ class CryptoList: UIViewController, UITableViewDelegate, UISearchResultsUpdating
     
     private let noResultsLabel: UILabel = {
         let label = UILabel()
-        label.text = "No results found."
+        label.text = "No results found"
         label.textColor = .white
         label.textAlignment = .center
         label.isHidden = true
         return label
     }()
+    
+    var onScrollToTopTap: (() -> Void)?
+
+    private let scrollToTopButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(UIImage(systemName: "square.and.arrow.up.fill"), for: .normal)
+        button.tintColor = UIColor.white
+        button.imageView?.contentMode = .scaleAspectFit
+//        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.addTarget(self, action: #selector(scrollToTopButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +72,7 @@ class CryptoList: UIViewController, UITableViewDelegate, UISearchResultsUpdating
         tableOfCrypto.dataSource = self
         makeLayouts()
         makeConstraints()
+        scrollToTopButton.translatesAutoresizingMaskIntoConstraints = false
         
         NetworkManager().getRate {[weak self]  rates in
             self?.allCurrentRate = rates.filter({$0.symbol.lowercased().contains("usdt")})
@@ -77,9 +93,15 @@ class CryptoList: UIViewController, UITableViewDelegate, UISearchResultsUpdating
 
     }
     
+    @objc private func scrollToTopButtonTapped() {
+         onScrollToTopTap?()
+     }
+    
     func makeLayouts() {
         self.view.addSubview(tableOfCrypto)
         self.view.addSubview(noResultsLabel)
+        self.view.addSubview(scrollToTopButton)
+
     }
     
     func makeConstraints() {
@@ -89,6 +111,12 @@ class CryptoList: UIViewController, UITableViewDelegate, UISearchResultsUpdating
         noResultsLabel.snp.makeConstraints { make in
                make.center.equalToSuperview()
            }
+        scrollToTopButton.snp.makeConstraints { make in
+            make.centerX.equalTo(200)
+            make.bottom.equalToSuperview().offset(-100)
+            make.width.height.equalTo(50)
+            
+             }
     }
     
     func setupSearchController() {
@@ -97,19 +125,29 @@ class CryptoList: UIViewController, UITableViewDelegate, UISearchResultsUpdating
         searchController.obscuresBackgroundDuringPresentation = true
         searchController.searchBar.placeholder = "Search"
         searchController.searchBar.tintColor = .white
-        searchController.searchBar.barTintColor = UIColor.black
+        searchController.searchBar.barTintColor = UIColor.white
         searchController.searchBar.frame = CGRect(x: 0, y: 0, width: 200, height: 44)
 
         if let searchIcon = UIImage(systemName: "magnifyingglass") {
             searchController.searchBar.setImage(searchIcon, for: .search, state: .normal)
             let searchTextField = searchController.searchBar.searchTextField
-            searchTextField.textColor = .white
+            searchTextField.textColor = .green
             searchTextField.tintColor = .white
         }
         
         if let searchText = searchController.searchBar.text?.lowercased() {
                 filteredData = allCurrentRate.filter { item in
+                    
+//                    if !allCurrentRate.isEmpty {
+//                        // There is data, hide the noResultsLabel
+//                        noResultsLabel.isHidden = true
+//                    } else {
+//                        // No data, show the noResultsLabel
+//                        noResultsLabel.isHidden = false
+//                    }
                     return item.symbol.lowercased().contains(searchText)
+                    
+                    
                 }
                 tableOfCrypto.reloadData()
             }
@@ -129,6 +167,10 @@ extension CryptoList: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: ListCryptoViewCell.id, for: indexPath) as! ListCryptoViewCell
         let dataItem = searchController.isActive ? filteredData[indexPath.row] : allCurrentRate[indexPath.row]
         cell.set(rate_name: allCurrentRate[indexPath.row])
+         self.onScrollToTopTap = {
+               tableView.setContentOffset(.zero, animated: true)
+           }
+
         return cell
     }
     
