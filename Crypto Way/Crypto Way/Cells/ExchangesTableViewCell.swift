@@ -66,6 +66,7 @@ class ExchangesTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         makeLayouts()
         makeConstraints()
+        apply3DEffect()
         self.selectionStyle = .none
         self.backgroundColor = .clear
         self.layer.masksToBounds = true
@@ -100,6 +101,18 @@ class ExchangesTableViewCell: UITableViewCell {
             make.centerX.equalTo(200)
 //            make.trailing.equalTo(contentView.safeAreaLayoutGuide).offset(-20)
         }
+    }
+    
+    func apply3DEffect() {
+        let rotationAngle = CGFloat(-15.0 * .pi / 180.0)
+        var transform = CATransform3DIdentity
+        transform.m34 = -1 / 1000 
+        transform = CATransform3DRotate(transform, rotationAngle, 1, 0, 0)
+        cellView.layer.transform = transform
+        cellView.layer.shadowColor = UIColor.black.cgColor
+        cellView.layer.shadowOpacity = 0.5
+        cellView.layer.shadowOffset = CGSize(width: 0, height: 10)
+        cellView.layer.shadowRadius = 10
     }
     
     func set(exchange_name: ExchangesModel) {

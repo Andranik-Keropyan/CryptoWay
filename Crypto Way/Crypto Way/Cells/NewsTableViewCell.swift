@@ -52,10 +52,16 @@ class NewsTableViewCell: UITableViewCell {
         return spinn
     }()
 
+    var onCellTap: (() -> Void)?
+
     override func awakeFromNib() {
         super.awakeFromNib()
+
     }
 
+    @objc private func cellTapped() {
+        onCellTap?()
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
@@ -64,6 +70,8 @@ class NewsTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         makeLayouts()
         makeConstraints()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(cellTapped))
+        stackView.addGestureRecognizer(tapGesture)
         self.selectionStyle = .none
         self.backgroundColor = .clear
         self.layer.masksToBounds = true
@@ -126,9 +134,47 @@ class NewsTableViewCell: UITableViewCell {
         imageOfNews.image = UIImage(systemName: "gear")
     }
     
+    
+    private func showPopup() {
+        let popupView = PopupView(frame: CGRect(x: 0, y: 0, width: 300, height: 400))
+        popupView.titleLabel.text = nameOfTitle.text
+
+        let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
+        alert.view.addSubview(popupView)
+
+        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        let window = windowScene?.windows.first
+
+        window?.rootViewController?.present(alert, animated: true, completion: nil)
+
+        popupView.closeButton.addTarget(self, action: #selector(closePopup), for: .touchUpInside)
+    }
+
+    @objc private func closePopup() {
+        if let presentingViewController = self.findViewController() {
+            presentingViewController.dismiss(animated: true, completion: nil)
+        }
+    }
+
+    private func findViewController() -> UIViewController? {
+        var responder: UIResponder? = self
+        while let nextResponder = responder?.next {
+            responder = nextResponder
+            if let viewController = nextResponder as? UIViewController {
+                return viewController
+            }
+        }
+        return nil
+    }
+  
+    
     func set(news_name: Datum) {
         nameOfTitle.text = news_name.title
         nameOfDescription.text = news_name.body
         setImageFrom(news_name.imageurl)
+        
+        onCellTap = { [weak self] in
+                 self?.showPopup()
+             }
     }
 }

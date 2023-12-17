@@ -70,12 +70,15 @@ class ListCryptoViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         makeLayouts()
         makeConstraints()
+        apply3DEffect()
+
         self.selectionStyle = .none
         self.backgroundColor = .clear
         self.layer.masksToBounds = true
@@ -123,6 +126,18 @@ class ListCryptoViewCell: UITableViewCell {
             make.top.equalTo(cellView).offset(20)
             make.height.equalTo(20)
         }
+    }
+    
+    func apply3DEffect() {
+        let rotationAngle = CGFloat(-15.0 * .pi / 180.0)
+        var transform = CATransform3DIdentity
+        transform.m34 = -1 / 700
+        transform = CATransform3DRotate(transform, rotationAngle, 1, 0, 0)
+        cellView.layer.transform = transform
+        cellView.layer.shadowColor = UIColor.black.cgColor
+        cellView.layer.shadowOpacity = 0.5
+        cellView.layer.shadowOffset = CGSize(width: 0, height: 10)
+        cellView.layer.shadowRadius = 20
     }
   
     func set(rate_name: CryptoModel) {

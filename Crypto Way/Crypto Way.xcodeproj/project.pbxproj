@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0413B3942B2E120B00021D31 /* IconImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413B3932B2E120B00021D31 /* IconImage.swift */; };
 		0413B3962B2E122200021D31 /* IconImage+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413B3952B2E122200021D31 /* IconImage+ViewModel.swift */; };
+		0413B3992B2EEDDA00021D31 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0413B3982B2EEDDA00021D31 /* PopupView.swift */; };
 		04461FC12B0B7003005A7FA3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04461FC02B0B7003005A7FA3 /* AppDelegate.swift */; };
 		04461FC32B0B7003005A7FA3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04461FC22B0B7003005A7FA3 /* SceneDelegate.swift */; };
 		04461FC52B0B7003005A7FA3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04461FC42B0B7003005A7FA3 /* ViewController.swift */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		0413B3932B2E120B00021D31 /* IconImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconImage.swift; sourceTree = "<group>"; };
 		0413B3952B2E122200021D31 /* IconImage+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IconImage+ViewModel.swift"; sourceTree = "<group>"; };
+		0413B3982B2EEDDA00021D31 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		04461FBD2B0B7003005A7FA3 /* Crypto Way.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Crypto Way.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04461FC02B0B7003005A7FA3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04461FC22B0B7003005A7FA3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +94,14 @@
 			path = IconImage;
 			sourceTree = "<group>";
 		};
+		0413B39A2B2EF5CF00021D31 /* Popup */ = {
+			isa = PBXGroup;
+			children = (
+				0413B3982B2EEDDA00021D31 /* PopupView.swift */,
+			);
+			path = Popup;
+			sourceTree = "<group>";
+		};
 		04461FB42B0B7003005A7FA3 = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +121,7 @@
 		04461FBF2B0B7003005A7FA3 /* Crypto Way */ = {
 			isa = PBXGroup;
 			children = (
+				0413B39A2B2EF5CF00021D31 /* Popup */,
 				0413B3922B2E11F200021D31 /* IconImage */,
 				04461FE92B0BA02B005A7FA3 /* Models */,
 				04461FE22B0B7C50005A7FA3 /* Cells */,
@@ -254,6 +265,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0413B3992B2EEDDA00021D31 /* PopupView.swift in Sources */,
 				04CC69CC2B0D29860043D292 /* ExchangesTableViewCell.swift in Sources */,
 				04461FFC2B0CFB57005A7FA3 /* WrapperModel.swift in Sources */,
 				04461FEF2B0BA067005A7FA3 /* NetworkManager.swift in Sources */,
