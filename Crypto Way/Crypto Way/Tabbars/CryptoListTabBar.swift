@@ -25,8 +25,8 @@ class CryptoList: UIViewController, UITableViewDelegate, UISearchResultsUpdating
     
     let icons: [String]  = [
         "https://www.klipartz.com/en/sticker-png-mxhjp",
-"https://www.hiclipart.com/free-transparent-background-png-clipart-mcsvm",
-"https://www.pngwing.com/en/free-png-addfd",
+        "https://www.hiclipart.com/free-transparent-background-png-clipart-mcsvm",
+        "https://www.pngwing.com/en/free-png-addfd",
         
     ]
 
@@ -38,6 +38,15 @@ class CryptoList: UIViewController, UITableViewDelegate, UISearchResultsUpdating
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(ListCryptoViewCell.self, forCellReuseIdentifier: ListCryptoViewCell.id)
         return tableView
+    }()
+    
+    private let noResultsLabel: UILabel = {
+        let label = UILabel()
+        label.text = "No results found."
+        label.textColor = .white
+        label.textAlignment = .center
+        label.isHidden = true
+        return label
     }()
 
     override func viewDidLoad() {
@@ -51,14 +60,13 @@ class CryptoList: UIViewController, UITableViewDelegate, UISearchResultsUpdating
         
         NetworkManager().getRate {[weak self]  rates in
             self?.allCurrentRate = rates.filter({$0.symbol.lowercased().contains("usdt")})
+//            self?.allCurrentRate = rates.filter({$0.symbol.lowercased().dropLast(4)})
             let modifiedArray = self?.allCurrentRate.map { originalString in
 
     let endIndex = originalString.symbol.index(originalString.symbol.endIndex, offsetBy: -4)
                 let truncatedString = originalString.symbol[..<endIndex]
-                return  String(truncatedString)
+                return  truncatedString
             }
-            
-            
             print(modifiedArray)
 //            self?.shortedCurrencies = modifiedArray!
 
@@ -71,12 +79,16 @@ class CryptoList: UIViewController, UITableViewDelegate, UISearchResultsUpdating
     
     func makeLayouts() {
         self.view.addSubview(tableOfCrypto)
+        self.view.addSubview(noResultsLabel)
     }
     
     func makeConstraints() {
         tableOfCrypto.snp.makeConstraints { make in
             make.edges.equalToSuperview().offset(0)
         }
+        noResultsLabel.snp.makeConstraints { make in
+               make.center.equalToSuperview()
+           }
     }
     
     func setupSearchController() {
@@ -94,14 +106,22 @@ class CryptoList: UIViewController, UITableViewDelegate, UISearchResultsUpdating
             searchTextField.textColor = .white
             searchTextField.tintColor = .white
         }
-
+        
+        if let searchText = searchController.searchBar.text?.lowercased() {
+                filteredData = allCurrentRate.filter { item in
+                    return item.symbol.lowercased().contains(searchText)
+                }
+                tableOfCrypto.reloadData()
+            }
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }
     
+    
 }
 extension CryptoList: UITableViewDataSource {
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        noResultsLabel.isHidden = !filteredData.isEmpty
         return searchController.isActive ? filteredData.count : allCurrentRate.count
     }
 

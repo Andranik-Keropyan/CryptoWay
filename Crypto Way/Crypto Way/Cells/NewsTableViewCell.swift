@@ -44,6 +44,13 @@ class NewsTableViewCell: UITableViewCell {
         let image = UIImageView ()
         return image
     } ()
+    
+    var spinner:  UIActivityIndicatorView = {
+        let spinn = UIActivityIndicatorView ()
+        spinn.color = .white
+        spinn.isHidden = false
+        return spinn
+    }()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -84,12 +91,20 @@ class NewsTableViewCell: UITableViewCell {
             make.trailing.equalTo(stackView.snp.trailing).offset(-20)
             make.height.equalTo(200)
         }
+        spinner.snp.makeConstraints { make in
+            make.leading.equalTo(stackView.snp.leading).offset(20)
+            make.trailing.equalTo(stackView.snp.trailing).offset(-20)
+            make.height.equalTo(200)
+
+        }
     }
     func makeLayouts() {
         contentView.addSubview(stackView)
         stackView.addArrangedSubview(nameOfTitle)
         stackView.addArrangedSubview(nameOfDescription)
         stackView.addArrangedSubview(imageOfNews)
+        imageOfNews.addSubview(spinner)
+
     }
     
     func setImageFrom(_ url: URL) {
@@ -99,7 +114,9 @@ class NewsTableViewCell: UITableViewCell {
             else { return }
             DispatchQueue.main.async { [weak self] in
                 guard let self else { return }
+                self.spinner.startAnimating()
                 self.imageOfNews.image = image
+                self.spinner.stopAnimating()
             }
         }
     }
