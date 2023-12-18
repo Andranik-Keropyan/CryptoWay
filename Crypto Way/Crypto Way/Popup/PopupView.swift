@@ -34,15 +34,26 @@ class PopupView: UIView {
     } ()
     
     let closeButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .custom)
         button.setTitle("Close", for: .normal)
+        button.addTarget(self, action: #selector(close), for: .touchUpInside)
         button.setTitleColor(.white, for: .normal)
+        button.isUserInteractionEnabled = true
+        button.backgroundColor = .blue
         return button
     }()
+    
+    @objc private func close() {
+        self.closeAction?()
+    }
+
+    
+    var closeAction: (()-> Void)?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
+
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -50,23 +61,11 @@ class PopupView: UIView {
         setupUI()
     }
     
-//    func apply3DEffect() {
-//        let rotationAngle = CGFloat(-15.0 * .pi / 180.0)
-//        var transform = CATransform3DIdentity
-//        transform.m34 = -1 / 800
-//        transform = CATransform3DRotate(transform, rotationAngle, 1, 0, 0)
-//        self.layer.transform = transform
-//        self.layer.shadowColor = UIColor.black.cgColor
-//        self.layer.shadowOpacity = 0.5
-//        self.layer.shadowOffset = CGSize(width: 0, height: 10)
-//        self.layer.shadowRadius = 20
-//    }
-
+   
     private func setupUI() {
         backgroundColor = UIColor.hexStringToUIColor(hex: "#193a34")
         layer.cornerRadius = 10
         layer.masksToBounds = true
-//        apply3DEffect()
         addSubview(titleLabel)
         addSubview(descriptionLabel)
         addSubview(imageOfNews)
@@ -75,23 +74,26 @@ class PopupView: UIView {
         titleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalToSuperview().offset(20)
-            make.width.equalToSuperview().offset(-10)
+            make.leading.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview().offset(-10)
         }
-        
         descriptionLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.width.equalToSuperview().offset(-10)
+            make.leading.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview().offset(-10)
             make.top.equalTo(titleLabel.snp.bottom).offset(20)
-            make.bottom.lessThanOrEqualTo(imageOfNews.snp.top).offset(-20)
+            make.bottom.equalTo(imageOfNews.snp.top).offset(-20)
         }
         imageOfNews.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.width.equalToSuperview().offset(-10)
+            make.leading.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview().offset(-10)
             make.top.equalTo(descriptionLabel.snp.bottom).offset(20)
-            make.bottom.lessThanOrEqualTo(closeButton.snp.top).offset(-20)
+            make.bottom.equalTo(closeButton.snp.top).offset(-20)
         }
-
         closeButton.snp.makeConstraints { make in
+            make.top.equalTo(imageOfNews.snp.bottom).offset(20)
+            make.leading.trailing.equalToSuperview().offset(0)
             make.centerX.equalToSuperview()
             make.bottom.equalToSuperview().offset(-20)
         }

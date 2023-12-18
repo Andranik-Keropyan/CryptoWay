@@ -23,14 +23,6 @@ class CryptoList: UIViewController, UITableViewDelegate, UISearchResultsUpdating
     var allCurrentRate: [CryptoModel] = []
     var shortedCurrencies: [CryptoModel] = []
     
-    let icons: [String]  = [
-        "https://www.klipartz.com/en/sticker-png-mxhjp",
-        "https://www.hiclipart.com/free-transparent-background-png-clipart-mcsvm",
-        "https://www.pngwing.com/en/free-png-addfd",
-        
-    ]
-
-    
     let tableOfCrypto: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .clear
@@ -56,7 +48,6 @@ class CryptoList: UIViewController, UITableViewDelegate, UISearchResultsUpdating
         button.setImage(UIImage(systemName: "square.and.arrow.up.fill"), for: .normal)
         button.tintColor = UIColor.white
         button.imageView?.contentMode = .scaleAspectFit
-//        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         button.addTarget(self, action: #selector(scrollToTopButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -74,18 +65,10 @@ class CryptoList: UIViewController, UITableViewDelegate, UISearchResultsUpdating
         makeConstraints()
         scrollToTopButton.translatesAutoresizingMaskIntoConstraints = false
         
+        
+        
         NetworkManager().getRate {[weak self]  rates in
             self?.allCurrentRate = rates.filter({$0.symbol.lowercased().contains("usdt")})
-//            self?.allCurrentRate = rates.filter({$0.symbol.lowercased().dropLast(4)})
-            let modifiedArray = self?.allCurrentRate.map { originalString in
-
-    let endIndex = originalString.symbol.index(originalString.symbol.endIndex, offsetBy: -4)
-                let truncatedString = originalString.symbol[..<endIndex]
-                return  truncatedString
-            }
-            print(modifiedArray)
-//            self?.shortedCurrencies = modifiedArray!
-
             self?.tableOfCrypto.reloadData()
         } errorClosure: { error in
             print(error)
@@ -112,7 +95,7 @@ class CryptoList: UIViewController, UITableViewDelegate, UISearchResultsUpdating
                make.center.equalToSuperview()
            }
         scrollToTopButton.snp.makeConstraints { make in
-            make.centerX.equalTo(200)
+            make.trailing.equalToSuperview().offset(-20)
             make.bottom.equalToSuperview().offset(-100)
             make.width.height.equalTo(50)
             
@@ -124,67 +107,54 @@ class CryptoList: UIViewController, UITableViewDelegate, UISearchResultsUpdating
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = true
         searchController.searchBar.placeholder = "Search"
-        searchController.searchBar.tintColor = .white
-        searchController.searchBar.barTintColor = UIColor.white
+        searchController.searchBar.tintColor = .green // Set your desired color here
+        searchController.searchBar.barTintColor = UIColor.green
         searchController.searchBar.frame = CGRect(x: 0, y: 0, width: 200, height: 44)
+        
+        let placeholderAttributes: [NSAttributedString.Key: Any] = [
+               .foregroundColor: UIColor.green // Set your desired color here
+           ]
+           searchController.searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search", attributes: placeholderAttributes)
+
 
         if let searchIcon = UIImage(systemName: "magnifyingglass") {
-            searchController.searchBar.setImage(searchIcon, for: .search, state: .normal)
-            let searchTextField = searchController.searchBar.searchTextField
-            searchTextField.textColor = .green
-            searchTextField.tintColor = .white
-        }
+            let tintedSearchIcon = searchIcon.withTintColor(.white, renderingMode: .alwaysOriginal)
+                searchController.searchBar.setImage(tintedSearchIcon, for: .search, state: .normal)
+            }
         
         if let searchText = searchController.searchBar.text?.lowercased() {
                 filteredData = allCurrentRate.filter { item in
-                    
-//                    if !allCurrentRate.isEmpty {
-//                        // There is data, hide the noResultsLabel
-//                        noResultsLabel.isHidden = true
-//                    } else {
-//                        // No data, show the noResultsLabel
-//                        noResultsLabel.isHidden = false
-//                    }
+
                     return item.symbol.lowercased().contains(searchText)
-                    
-                    
                 }
                 tableOfCrypto.reloadData()
             }
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }
-    
-    
 }
 extension CryptoList: UITableViewDataSource {
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        noResultsLabel.isHidden = !filteredData.isEmpty
+         if searchController.isActive, filteredData.isEmpty {
+             noResultsLabel.isHidden = false
+         } else {
+             noResultsLabel.isHidden = true
+
+         }
         return searchController.isActive ? filteredData.count : allCurrentRate.count
     }
 
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ListCryptoViewCell.id, for: indexPath) as! ListCryptoViewCell
         let dataItem = searchController.isActive ? filteredData[indexPath.row] : allCurrentRate[indexPath.row]
-        cell.set(rate_name: allCurrentRate[indexPath.row])
+        cell.set(rate_name: dataItem)
          self.onScrollToTopTap = {
                tableView.setContentOffset(.zero, animated: true)
            }
 
         return cell
     }
-    
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: ListCryptoViewCell.id, for: indexPath)
-//        guard let cryptoCell = cell as? ListCryptoViewCell else { return ListCryptoViewCell() }
-//        cryptoCell.set(rate_name: allCurrentRate[indexPath.row] )
-//        cryptoCell.iconImageView.setViewModel(.init())
-//        cryptoCell.iconImageView.viewModel?.setImageFrom(icons[indexPath.row])
-//        print(allCurrentRate)
-//        return cryptoCell
-//    }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }

@@ -137,7 +137,7 @@ class NewsTableViewCell: UITableViewCell {
     }
     
     @objc private func scrollToTopButtonTapped() {
-           onScrollToTopTap?()
+           onScrollToTopTap?() // отвечает за скролл ленты новостей 
        }
     
     func setImageFrom(_ url: URL) {
@@ -179,7 +179,8 @@ class NewsTableViewCell: UITableViewCell {
 
         presentingViewController?.present(alert, animated: true, completion: nil)
 
-        popupView.closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
+        popupView.closeAction = {[ weak self] in
+             self?.presentingViewController?.dismiss(animated: true)}
     }
 
     @objc private func close() {
