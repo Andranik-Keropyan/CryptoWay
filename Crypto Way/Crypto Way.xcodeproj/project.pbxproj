@@ -40,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		041220282B30C49100E8B315 /* style.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = style.json; sourceTree = "<group>"; };
 		0413B3932B2E120B00021D31 /* IconImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconImage.swift; sourceTree = "<group>"; };
 		0413B3952B2E122200021D31 /* IconImage+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IconImage+ViewModel.swift"; sourceTree = "<group>"; };
 		0413B3982B2EEDDA00021D31 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
@@ -146,6 +147,7 @@
 				04461FDC2B0B7128005A7FA3 /* ListOfExchangesTabBar.swift */,
 				04461FDE2B0B7142005A7FA3 /* CryptoNewsTabBar.swift */,
 				04461FE02B0B715A005A7FA3 /* MapTabBar.swift */,
+				041220282B30C49100E8B315 /* style.json */,
 			);
 			path = Tabbars;
 			sourceTree = "<group>";

@@ -39,6 +39,7 @@ class ListOfExchanges: UIViewController ,UITableViewDelegate {
         view.backgroundColor = UIColor.hexStringToUIColor(hex: "#343434")
         // Do any additional setup after loading the view.
     }
+
     
     func makeLayouts() {
         self.view.addSubview(tableOfExchanges)
