@@ -36,9 +36,9 @@ class GeneralTabBar: UITabBarController {
         controllers.append(UINavigationController(rootViewController: thirdVC))
         thirdVC.tabBarItem = .init(title: "News", image: .init(systemName: "newspaper"), tag: 2)
 
-        let lastVC = MapController()
-        controllers.append(UINavigationController(rootViewController: lastVC))
-        lastVC.tabBarItem = .init(title: "Map", image: .init(systemName: "map"), tag: 3)
+//        let lastVC = MapController()
+//        controllers.append(UINavigationController(rootViewController: lastVC))
+//        lastVC.tabBarItem = .init(title: "Map", image: .init(systemName: "map"), tag: 3)
 
         self.viewControllers = controllers
     }

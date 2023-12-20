@@ -73,12 +73,12 @@ extension ListOfExchanges:UITableViewDataSource {
 
     })
         tableOfExchanges.deselectRow(at: indexPath, animated: true)
-        let mapNAV = self.tabBarController?.viewControllers?.last as? UINavigationController
-        let mapVC = mapNAV?.viewControllers.last
-        let convertedVC = mapVC as? MapController
+        let mapVC = MapController()
+        let navController = UINavigationController(rootViewController: mapVC)
         let coordinate = CLLocationCoordinate2D(latitude: dataExchanges[indexPath.row].Latitude , longitude:dataExchanges[indexPath.row].Longitude )
-        convertedVC?.createMarker(coordinate: coordinate)
-        mapVC?.tabBarController?.selectedIndex = 3
+        present(navController, animated: true) {
+            mapVC.createMarker(coordinate: coordinate)
+            }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -32,7 +32,9 @@ class NewsTableViewCell: UITableViewCell {
         myStack.axis = .vertical
         myStack.layer.cornerRadius = 10
         myStack.layer.borderWidth = 1.0
-        myStack.layer.borderColor = UIColor.green.cgColor
+        myStack.backgroundColor = UIColor.hexStringToUIColor(hex: "#212246")
+
+//        myStack.layer.borderColor = UIColor.green.cgColor
         return myStack
     } ()
     
@@ -87,7 +89,7 @@ class NewsTableViewCell: UITableViewCell {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(cellTapped))
         stackView.addGestureRecognizer(tapGesture)
         self.selectionStyle = .none
-        self.backgroundColor = UIColor.hexStringToUIColor(hex: "#212246")
+        self.backgroundColor = UIColor.hexStringToUIColor(hex: "#161730")
         self.layer.masksToBounds = true
     }
     
@@ -104,10 +106,10 @@ class NewsTableViewCell: UITableViewCell {
             make.trailing.equalTo(stackView.snp.trailing).offset(-20)
             make.top.equalTo(stackView.snp.top).offset(20)
         }
-        nameOfDescription.snp.makeConstraints { make in
-            make.leading.equalTo(stackView.snp.leading).offset(20)
-            make.trailing.equalTo(stackView.snp.trailing).offset(-20)
-        }
+//        nameOfDescription.snp.makeConstraints { make in
+//            make.leading.equalTo(stackView.snp.leading).offset(20)
+//            make.trailing.equalTo(stackView.snp.trailing).offset(-20)
+//        }
         imageOfNews.snp.makeConstraints { make in
             make.leading.equalTo(stackView.snp.leading).offset(20)
             make.trailing.equalTo(stackView.snp.trailing).offset(-20)
@@ -129,7 +131,7 @@ class NewsTableViewCell: UITableViewCell {
     func makeLayouts() {
         contentView.addSubview(stackView)
         stackView.addArrangedSubview(nameOfTitle)
-        stackView.addArrangedSubview(nameOfDescription)
+//        stackView.addArrangedSubview(nameOfDescription)
         stackView.addArrangedSubview(imageOfNews)
         stackView.addSubview(scrollToTopButton)
         imageOfNews.addSubview(spinner)

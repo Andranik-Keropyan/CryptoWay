@@ -63,7 +63,7 @@ class PopupView: UIView {
     
    
     private func setupUI() {
-        backgroundColor = UIColor.hexStringToUIColor(hex: "#193a34")
+        backgroundColor = UIColor.hexStringToUIColor(hex: "#212246")
         layer.cornerRadius = 10
         layer.masksToBounds = true
         addSubview(titleLabel)
