@@ -18,7 +18,6 @@ class MapController: UIViewController, GMSMapViewDelegate {
     private lazy var googleMap: GMSMapView = {
         let mapView = GMSMapView()
         mapView.delegate = self
-//        setupMapStyle()
         return mapView
     }()
 
@@ -29,8 +28,18 @@ class MapController: UIViewController, GMSMapViewDelegate {
         view.addSubview(googleMap)
         view.backgroundColor = UIColor.hexStringToUIColor(hex: "#161730")
         makeconstraints()
+        func setupMapStyle() {
+               do {
+                   if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
+                       googleMap.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+                   } else {
+                       NSLog("Unable to find style.json")
+                   }
+               } catch {
+                   NSLog("One or more of the map styles failed to load. \(error)")
+               }
+           }
         
-        // Do any additional setup after loading the view.
     }
 
     func createMarker (coordinate: CLLocationCoordinate2D) {
@@ -55,16 +64,4 @@ class MapController: UIViewController, GMSMapViewDelegate {
         }
     }
     
-    func setupMapStyle() {
-           do {
-               // Set the map style by passing the URL of the local file.
-               if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
-                   googleMap.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
-               } else {
-                   NSLog("Unable to find style.json")
-               }
-           } catch {
-               NSLog("One or more of the map styles failed to load. \(error)")
-           }
-       }
 }

@@ -39,7 +39,7 @@ class PopupView: UIView {
         button.addTarget(self, action: #selector(close), for: .touchUpInside)
         button.setTitleColor(.white, for: .normal)
         button.isUserInteractionEnabled = true
-        button.backgroundColor = .blue
+        button.backgroundColor = .clear
         return button
     }()
     
@@ -76,19 +76,18 @@ class PopupView: UIView {
             make.top.equalToSuperview().offset(20)
             make.leading.equalToSuperview().offset(10)
             make.trailing.equalToSuperview().offset(-10)
+            make.bottom.equalTo(descriptionLabel.snp.top).offset(10)
         }
         descriptionLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.leading.equalToSuperview().offset(10)
             make.trailing.equalToSuperview().offset(-10)
-            make.top.equalTo(titleLabel.snp.bottom).offset(20)
             make.bottom.equalTo(imageOfNews.snp.top).offset(-20)
         }
         imageOfNews.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.leading.equalToSuperview().offset(10)
             make.trailing.equalToSuperview().offset(-10)
-            make.top.equalTo(descriptionLabel.snp.bottom).offset(20)
             make.bottom.equalTo(closeButton.snp.top).offset(-20)
         }
         closeButton.snp.makeConstraints { make in

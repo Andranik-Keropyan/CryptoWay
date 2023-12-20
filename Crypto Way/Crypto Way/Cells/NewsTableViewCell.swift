@@ -160,13 +160,21 @@ class NewsTableViewCell: UITableViewCell {
     }
     
     private func showPopup() {
-        let popupView = PopupView(frame: CGRect(x: 20, y: -100, width: 350, height: 630))
+        let popupView = PopupView()
         popupView.titleLabel.text = nameOfTitle.text
         popupView.descriptionLabel.text = nameOfDescription.text
         popupView.imageOfNews.image = imageOfNews.image
 
         let alert = UIViewController()
         alert.view.addSubview(popupView)
+        
+        popupView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(20)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+            make.bottom.equalToSuperview().offset(-100)
+
+        }
 
         presentingViewController = window?.rootViewController
 

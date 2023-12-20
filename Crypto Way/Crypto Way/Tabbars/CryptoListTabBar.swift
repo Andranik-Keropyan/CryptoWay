@@ -175,8 +175,13 @@ extension CryptoList: UITableViewDataSource {
         cell.set(rate_name: dataItem)
         self.onScrollToTopTap = {
             tableView.setContentOffset(.zero, animated: true)
+            
         }
-        
+        if let image = UIImage(named: dataItem.symbol) {
+            cell.iconImageView.image = image
+        } else {
+            print("cant find curren image ")
+        }
         return cell
     }
     
