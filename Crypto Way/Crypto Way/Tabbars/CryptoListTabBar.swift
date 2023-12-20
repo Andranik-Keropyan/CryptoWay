@@ -32,6 +32,14 @@ class CryptoList: UIViewController, UITableViewDelegate, UISearchResultsUpdating
         return tableView
     }()
     
+    private let titleOfPage: UILabel = {
+        let title = UILabel()
+        title.text = "Crypto Rates"
+        title.font = UIFont.boldSystemFont(ofSize: 24)
+        title.textColor = .white
+        return title
+    } ()
+    
     private let noResultsLabel: UILabel = {
         let label = UILabel()
         label.text = "No results found"
@@ -58,11 +66,12 @@ class CryptoList: UIViewController, UITableViewDelegate, UISearchResultsUpdating
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchController()
-        view.backgroundColor = UIColor.hexStringToUIColor(hex: "#343434")
+        view.backgroundColor = UIColor.hexStringToUIColor(hex: "#161730")
         tableOfCrypto.delegate = self
         tableOfCrypto.dataSource = self
         makeLayouts()
         makeConstraints()
+        tableOfCrypto.allowsMultipleSelectionDuringEditing = true
         scrollToTopButton.translatesAutoresizingMaskIntoConstraints = false
         
         
@@ -84,12 +93,16 @@ class CryptoList: UIViewController, UITableViewDelegate, UISearchResultsUpdating
         self.view.addSubview(tableOfCrypto)
         self.view.addSubview(noResultsLabel)
         self.view.addSubview(scrollToTopButton)
-
+        self.view.addSubview(titleOfPage)
     }
     
     func makeConstraints() {
         tableOfCrypto.snp.makeConstraints { make in
-            make.edges.equalToSuperview().offset(0)
+            make.leading.equalToSuperview().offset(0)
+            make.top.equalTo(titleOfPage.snp.bottom).offset(20)
+            make.trailing.equalToSuperview().offset(0)
+            make.bottom.equalToSuperview().offset(0)
+
         }
         noResultsLabel.snp.makeConstraints { make in
                make.center.equalToSuperview()
@@ -98,8 +111,13 @@ class CryptoList: UIViewController, UITableViewDelegate, UISearchResultsUpdating
             make.trailing.equalToSuperview().offset(-20)
             make.bottom.equalToSuperview().offset(-100)
             make.width.height.equalTo(50)
-            
-             }
+            }
+        titleOfPage.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(20)
+            make.top.equalToSuperview().offset(60)
+            make.height.equalTo(36)
+
+        }
     }
     
     func setupSearchController() {
@@ -107,24 +125,25 @@ class CryptoList: UIViewController, UITableViewDelegate, UISearchResultsUpdating
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = true
         searchController.searchBar.placeholder = "Search"
-        searchController.searchBar.tintColor = .green // Set your desired color here
-        searchController.searchBar.barTintColor = UIColor.green
+        searchController.searchBar.tintColor = .green
+        searchController.searchBar.barTintColor = UIColor.gray
         searchController.searchBar.frame = CGRect(x: 0, y: 0, width: 200, height: 44)
         
+        
         let placeholderAttributes: [NSAttributedString.Key: Any] = [
-               .foregroundColor: UIColor.green // Set your desired color here
+               .foregroundColor: UIColor.green
            ]
            searchController.searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search", attributes: placeholderAttributes)
-
 
         if let searchIcon = UIImage(systemName: "magnifyingglass") {
             let tintedSearchIcon = searchIcon.withTintColor(.white, renderingMode: .alwaysOriginal)
                 searchController.searchBar.setImage(tintedSearchIcon, for: .search, state: .normal)
             }
+
         
         if let searchText = searchController.searchBar.text?.lowercased() {
                 filteredData = allCurrentRate.filter { item in
-
+ 
                     return item.symbol.lowercased().contains(searchText)
                 }
                 tableOfCrypto.reloadData()
@@ -134,50 +153,52 @@ class CryptoList: UIViewController, UITableViewDelegate, UISearchResultsUpdating
     }
 }
 extension CryptoList: UITableViewDataSource {
-     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         if searchController.isActive, filteredData.isEmpty {
-             noResultsLabel.isHidden = false
-         } else {
-             noResultsLabel.isHidden = true
-
-         }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchController.isActive, filteredData.isEmpty {
+            noResultsLabel.isHidden = false
+        } else {
+            noResultsLabel.isHidden = true
+        }
+        
+        if searchController.isActive {
+            titleOfPage.isHidden = true
+        } else {
+            titleOfPage.isHidden = false
+        }
+        
         return searchController.isActive ? filteredData.count : allCurrentRate.count
     }
-
-     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ListCryptoViewCell.id, for: indexPath) as! ListCryptoViewCell
         let dataItem = searchController.isActive ? filteredData[indexPath.row] : allCurrentRate[indexPath.row]
         cell.set(rate_name: dataItem)
-         self.onScrollToTopTap = {
-               tableView.setContentOffset(.zero, animated: true)
-           }
-
+        self.onScrollToTopTap = {
+            tableView.setContentOffset(.zero, animated: true)
+        }
+        
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath)
+        let cell = tableView.cellForRow(at: indexPath) as! ListCryptoViewCell
+//        cell.cellView.backgroundColor = UIColor.hexStringToUIColor(hex: "#696AAD")
+
         UIView.animate(withDuration: 0.2, animations: {
-        cell!.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)}, completion: { finished in
-        UIView.animate(withDuration: 0.2) { cell!.transform = .identity}
-    })
+            cell.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)}, completion: { finished in
+                UIView.animate(withDuration: 0.2) { cell.transform = .identity}
+
+            })
         tableOfCrypto.deselectRow(at: indexPath, animated: true)
     }
-
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
-        let label = UILabel(frame: CGRect(x: 5, y: 5, width: headerView.frame.width - 15, height: headerView.frame.height - 15))
-        label.text = "Crypto Rates"
-        label.backgroundColor = UIColor.hexStringToUIColor(hex: "#343434")
-        label.layer.cornerRadius = 25
-        label.layer.masksToBounds = true
-        label.font = UIFont.boldSystemFont(ofSize: 25)
-        label.textAlignment = .center
-        label.textColor = .white
-        headerView.addSubview(label)
-        return headerView
-    }}
+//    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+//         let cell = tableView.cellForRow(at: indexPath) as! ListCryptoViewCell
+//
+//         cell.cellView.backgroundColor = UIColor.hexStringToUIColor(hex: "#212246")
+//     }
+    
+}

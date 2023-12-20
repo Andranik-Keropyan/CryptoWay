@@ -96,6 +96,7 @@ class PopupView: UIView {
             make.leading.trailing.equalToSuperview().offset(0)
             make.centerX.equalToSuperview()
             make.bottom.equalToSuperview().offset(-20)
+            make.height.equalTo(20)
         }
     }
 }

@@ -36,7 +36,7 @@ class ListOfExchanges: UIViewController ,UITableViewDelegate {
         tableOfExchanges.dataSource = self
         makeLayouts()
         makeConstraints()
-        view.backgroundColor = UIColor.hexStringToUIColor(hex: "#343434")
+        view.backgroundColor = UIColor.hexStringToUIColor(hex: "#161730")
         // Do any additional setup after loading the view.
     }
 
@@ -90,10 +90,10 @@ extension ListOfExchanges:UITableViewDataSource {
             let label = UILabel()
             label.frame = CGRect.init(x: 5, y: 5, width: headerView.frame.width-15, height: headerView.frame.height-15)
             label.text = "Crypto Exchanges"
-            label.backgroundColor = UIColor.hexStringToUIColor(hex: "#343434")
+            label.backgroundColor = UIColor.hexStringToUIColor(hex: "#161730")
             label.layer.cornerRadius = 10
             label.font = UIFont.boldSystemFont(ofSize: 25)
-            label.textAlignment = .center
+            label.textAlignment = .left
             label.textColor = .white
             headerView.addSubview(label)
             return headerView

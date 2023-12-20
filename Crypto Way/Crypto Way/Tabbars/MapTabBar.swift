@@ -8,6 +8,7 @@
 import UIKit
 import GoogleMaps
 import CoreLocation
+import SnapKit
 
 class MapController: UIViewController, GMSMapViewDelegate {
     
@@ -15,17 +16,18 @@ class MapController: UIViewController, GMSMapViewDelegate {
 
 
     private lazy var googleMap: GMSMapView = {
-            let view = GMSMapView()
-            view.delegate = self
-            return view
-        }()
+        let mapView = GMSMapView()
+        mapView.delegate = self
+//        setupMapStyle()
+        return mapView
+    }()
 
     var Markers: [GMSMarker] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(googleMap)
-        view.backgroundColor = .lightGray
+        view.backgroundColor = UIColor.hexStringToUIColor(hex: "#161730")
         makeconstraints()
         
         // Do any additional setup after loading the view.
@@ -39,23 +41,7 @@ class MapController: UIViewController, GMSMapViewDelegate {
         moveCamera(to: coordinate)
     }
 
-//    override func loadView() {
-////        let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 14.0)
-////        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-//
-//        do {
-//          // Set the map style by passing the URL of the local file.
-//          if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
-//              googleMap.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
-//          } else {
-//            NSLog("Unable to find style.json")
-//          }
-//        } catch {
-//          NSLog("One or more of the map styles failed to load. \(error)")
-//        }
-//
-////        self.view = mapView
-//      }
+
 
     
     func moveCamera(to: CLLocationCoordinate2D) {
@@ -68,4 +54,17 @@ class MapController: UIViewController, GMSMapViewDelegate {
             make.bottom.equalToSuperview().offset(-85)
         }
     }
+    
+    func setupMapStyle() {
+           do {
+               // Set the map style by passing the URL of the local file.
+               if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
+                   googleMap.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+               } else {
+                   NSLog("Unable to find style.json")
+               }
+           } catch {
+               NSLog("One or more of the map styles failed to load. \(error)")
+           }
+       }
 }

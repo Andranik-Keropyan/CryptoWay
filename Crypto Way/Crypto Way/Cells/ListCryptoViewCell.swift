@@ -16,7 +16,8 @@ class ListCryptoViewCell: UITableViewCell {
         let view = UIView()
         view.layer.cornerRadius = 10
          view.layer.borderWidth = 1.0
-         view.layer.borderColor = UIColor.green.cgColor
+        view.backgroundColor = UIColor.hexStringToUIColor(hex: "#212246")
+//         view.layer.borderColor = UIColor.green.cgColor
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
        }()

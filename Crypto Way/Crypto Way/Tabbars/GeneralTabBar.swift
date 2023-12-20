@@ -13,11 +13,16 @@ class GeneralTabBar: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupControllers()
+        tabBar.barTintColor = UIColor.hexStringToUIColor(hex: "#161730")
+        tabBar.unselectedItemTintColor = UIColor.white
+        tabBar.tintColor = UIColor.green
+
         // Do any additional setup after loading the view.
     }
     
     func setupControllers() {
         var controllers: [UIViewController] = []
+        
       
         let FirstVC = CryptoList()
         controllers.append(UINavigationController(rootViewController: FirstVC))

@@ -87,7 +87,7 @@ class NewsTableViewCell: UITableViewCell {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(cellTapped))
         stackView.addGestureRecognizer(tapGesture)
         self.selectionStyle = .none
-        self.backgroundColor = .clear
+        self.backgroundColor = UIColor.hexStringToUIColor(hex: "#212246")
         self.layer.masksToBounds = true
     }
     
@@ -159,22 +159,15 @@ class NewsTableViewCell: UITableViewCell {
         imageOfNews.image = UIImage(systemName: "gear")
     }
     
-    private func makeGestures() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(close))
-        self.addGestureRecognizer(tap)
-    }
-    
-    
     private func showPopup() {
-        let popupView = PopupView(frame: CGRect(x: -48, y: -300, width: 370, height: 630))
+        let popupView = PopupView(frame: CGRect(x: 20, y: -100, width: 350, height: 630))
         popupView.titleLabel.text = nameOfTitle.text
         popupView.descriptionLabel.text = nameOfDescription.text
         popupView.imageOfNews.image = imageOfNews.image
 
-        let alert = UIAlertController(title: "", message: "", preferredStyle: .alert)
+        let alert = UIViewController()
         alert.view.addSubview(popupView)
 
-        // Set the presenting view controller
         presentingViewController = window?.rootViewController
 
         presentingViewController?.present(alert, animated: true, completion: nil)
@@ -182,13 +175,6 @@ class NewsTableViewCell: UITableViewCell {
         popupView.closeAction = {[ weak self] in
              self?.presentingViewController?.dismiss(animated: true)}
     }
-
-    @objc private func close() {
-        presentingViewController?.dismiss(animated: true)
-    }
-    
-
-  
     
     func set(news_name: Datum) {
         nameOfTitle.text = news_name.title

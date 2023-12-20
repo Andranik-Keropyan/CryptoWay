@@ -1,9 +1,0 @@
-[
-    {
-        "featureType": "road",
-         "elementType": "fill",
-        "stylers": [
-            { "color": "#99FF33" }
-        ]
-    } 
-]

@@ -13,10 +13,10 @@ class ExchangesTableViewCell: UITableViewCell {
     
     lazy var cellView: UIView = {
            let view = UIView()
-//           view.backgroundColor = UIColor.hexStringToUIColor(hex: "#050301")
+        view.backgroundColor = UIColor.hexStringToUIColor(hex: "#212246")
            view.layer.cornerRadius = 10
             view.layer.borderWidth = 1.0
-            view.layer.borderColor = UIColor.green.cgColor
+//            view.layer.borderColor = UIColor.green.cgColor
            view.translatesAutoresizingMaskIntoConstraints = false
            return view
        }()
@@ -25,6 +25,8 @@ class ExchangesTableViewCell: UITableViewCell {
         let Exchange = UILabel()
         Exchange.backgroundColor = .clear
         Exchange.text = "name of Exchange"
+        Exchange.font = UIFont(name: "Poppins", size: 16)
+        Exchange.font = UIFont.boldSystemFont(ofSize: 16)
         Exchange.textColor = .white
         Exchange.isUserInteractionEnabled = true
         Exchange.layer.masksToBounds = true
@@ -37,7 +39,8 @@ class ExchangesTableViewCell: UITableViewCell {
         let address = UILabel()
         address.backgroundColor = .clear
         address.text = "address"
-        address.textColor = .white
+        address.textColor = UIColor.hexStringToUIColor(hex: "#838C9E")
+        address.font = UIFont.systemFont(ofSize: 12)
         address.isUserInteractionEnabled = true
         address.layer.masksToBounds = true
         address.layer.cornerRadius = 8
@@ -49,6 +52,8 @@ class ExchangesTableViewCell: UITableViewCell {
         let phone = UILabel()
         phone.backgroundColor = .clear
         phone.text = "phone"
+        phone.font = UIFont(name: "Poppins", size: 16)
+        phone.font = UIFont.boldSystemFont(ofSize: 16)
         phone.textColor = .white
         phone.isUserInteractionEnabled = true
         phone.layer.masksToBounds = true
@@ -66,7 +71,7 @@ class ExchangesTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         makeLayouts()
         makeConstraints()
-        apply3DEffect()
+//        apply3DEffect()
         self.selectionStyle = .none
         self.backgroundColor = .clear
         self.layer.masksToBounds = true
@@ -86,34 +91,34 @@ class ExchangesTableViewCell: UITableViewCell {
             make.leading.equalToSuperview().offset(15)
             make.trailing.equalToSuperview().offset(-15)
             make.top.equalToSuperview().offset(15)
-            make.bottom.equalToSuperview().offset(-15)
+            make.bottom.equalToSuperview().offset(-10)
         }
         nameOfExchange.snp.makeConstraints { make in
-            make.leading.top.equalTo(contentView.safeAreaLayoutGuide).offset(30)
+            make.top.equalTo(contentView.safeAreaLayoutGuide).offset(30)
+            make.leading.equalTo(contentView.safeAreaLayoutGuide).offset(30)
         }
         phoneOfExchange.snp.makeConstraints { make in
-            make.top.equalTo(contentView.safeAreaLayoutGuide).offset(30)
+            make.top.equalTo(contentView.safeAreaLayoutGuide).offset(50)
             make.trailing.equalTo(contentView.safeAreaLayoutGuide).offset(-30)
-            make.trailing.equalTo(contentView.safeAreaLayoutGuide).offset(-20)
         }
         addressOfExchange.snp.makeConstraints { make in
-            make.top.equalTo(phoneOfExchange.snp.bottom).offset(20)
-            make.centerX.equalTo(200)
-//            make.trailing.equalTo(contentView.safeAreaLayoutGuide).offset(-20)
+            make.leading.equalTo(contentView.safeAreaLayoutGuide).offset(30)
+            make.top.equalTo(nameOfExchange.snp.bottom).offset(10)
+            make.bottom.equalToSuperview().offset(-20)
         }
     }
     
-    func apply3DEffect() {
-        let rotationAngle = CGFloat(-15.0 * .pi / 180.0)
-        var transform = CATransform3DIdentity
-        transform.m34 = -1 / 1000 
-        transform = CATransform3DRotate(transform, rotationAngle, 1, 0, 0)
-        cellView.layer.transform = transform
-        cellView.layer.shadowColor = UIColor.black.cgColor
-        cellView.layer.shadowOpacity = 0.5
-        cellView.layer.shadowOffset = CGSize(width: 0, height: 10)
-        cellView.layer.shadowRadius = 10
-    }
+//    func apply3DEffect() {
+//        let rotationAngle = CGFloat(-15.0 * .pi / 180.0)
+//        var transform = CATransform3DIdentity
+//        transform.m34 = -1 / 1000 
+//        transform = CATransform3DRotate(transform, rotationAngle, 1, 0, 0)
+//        cellView.layer.transform = transform
+//        cellView.layer.shadowColor = UIColor.black.cgColor
+//        cellView.layer.shadowOpacity = 0.5
+//        cellView.layer.shadowOffset = CGSize(width: 0, height: 10)
+//        cellView.layer.shadowRadius = 10
+//    }
     
     func set(exchange_name: ExchangesModel) {
         nameOfExchange.text = exchange_name.nameOfExchange
