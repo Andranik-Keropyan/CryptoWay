@@ -38,6 +38,7 @@
 		04549A872B1281A9003D0FA5 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04549A862B1281A9003D0FA5 /* String.swift */; };
 		04C29C042B31B01C009AECF3 /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 041220282B30C49100E8B315 /* style.json */; };
 		04CC69CC2B0D29860043D292 /* ExchangesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CC69CB2B0D29860043D292 /* ExchangesTableViewCell.swift */; };
+		04E317AD2B34AC4C00B1D0F4 /* RoundedTopCornersImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E317AC2B34AC4C00B1D0F4 /* RoundedTopCornersImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		04549A642B111CE0003D0FA5 /* ExchangesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangesModel.swift; sourceTree = "<group>"; };
 		04549A862B1281A9003D0FA5 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		04CC69CB2B0D29860043D292 /* ExchangesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangesTableViewCell.swift; sourceTree = "<group>"; };
+		04E317AC2B34AC4C00B1D0F4 /* RoundedTopCornersImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTopCornersImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 		04461FBF2B0B7003005A7FA3 /* Crypto Way */ = {
 			isa = PBXGroup;
 			children = (
+				04E317AB2B34AC3200B1D0F4 /* UIImageView */,
 				04C29C032B31A95F009AECF3 /* Resources */,
 				0413B39A2B2EF5CF00021D31 /* Popup */,
 				0413B3922B2E11F200021D31 /* IconImage */,
@@ -190,6 +193,14 @@
 				041220282B30C49100E8B315 /* style.json */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		04E317AB2B34AC3200B1D0F4 /* UIImageView */ = {
+			isa = PBXGroup;
+			children = (
+				04E317AC2B34AC4C00B1D0F4 /* RoundedTopCornersImageView.swift */,
+			);
+			path = UIImageView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,6 +308,7 @@
 				04461FDD2B0B7128005A7FA3 /* ListOfExchangesTabBar.swift in Sources */,
 				04461FC32B0B7003005A7FA3 /* SceneDelegate.swift in Sources */,
 				04461FDF2B0B7142005A7FA3 /* CryptoNewsTabBar.swift in Sources */,
+				04E317AD2B34AC4C00B1D0F4 /* RoundedTopCornersImageView.swift in Sources */,
 				04461FDB2B0B70C1005A7FA3 /* CryptoListTabBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

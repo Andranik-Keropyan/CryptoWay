@@ -56,8 +56,13 @@ class NewsTableViewCell: UITableViewCell {
         return description
     }()
     
-    lazy var imageOfNews: UIImageView = {
-        let image = UIImageView ()
+    lazy var imageOfNews: RoundedTopCornersImageView = {
+        let image = RoundedTopCornersImageView ()
+        image.image = UIImage(named: "your_image_name")
+        image.frame = CGRect(x: 50, y: 50, width: 200, height: 200)
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
+        
         return image
     } ()
     
