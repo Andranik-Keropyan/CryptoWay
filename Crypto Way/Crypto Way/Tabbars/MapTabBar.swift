@@ -28,17 +28,7 @@ class MapController: UIViewController, GMSMapViewDelegate {
         view.addSubview(googleMap)
         view.backgroundColor = UIColor.hexStringToUIColor(hex: "#161730")
         makeconstraints()
-        func setupMapStyle() {
-               do {
-                   if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
-                       googleMap.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
-                   } else {
-                       NSLog("Unable to find style.json")
-                   }
-               } catch {
-                   NSLog("One or more of the map styles failed to load. \(error)")
-               }
-           }
+        setupMapStyle()
         
     }
 
@@ -50,7 +40,17 @@ class MapController: UIViewController, GMSMapViewDelegate {
         moveCamera(to: coordinate)
     }
 
-
+    func setupMapStyle() {
+           do {
+               if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
+                   googleMap.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+               } else {
+                   NSLog("Unable to find style.json")
+               }
+           } catch {
+               NSLog("One or more of the map styles failed to load. \(error)")
+           }
+       }
 
     
     func moveCamera(to: CLLocationCoordinate2D) {

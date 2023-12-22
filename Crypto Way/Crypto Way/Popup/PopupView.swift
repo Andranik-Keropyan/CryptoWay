@@ -30,6 +30,7 @@ class PopupView: UIView {
     
     lazy var imageOfNews: UIImageView = {
         let image = UIImageView ()
+        
         return image
     } ()
     
