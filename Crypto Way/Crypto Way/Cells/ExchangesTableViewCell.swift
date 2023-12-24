@@ -16,7 +16,6 @@ class ExchangesTableViewCell: UITableViewCell {
         view.backgroundColor = UIColor.hexStringToUIColor(hex: "#212246")
            view.layer.cornerRadius = 10
             view.layer.borderWidth = 1.0
-//            view.layer.borderColor = UIColor.green.cgColor
            view.translatesAutoresizingMaskIntoConstraints = false
            return view
        }()
@@ -107,19 +106,7 @@ class ExchangesTableViewCell: UITableViewCell {
             make.bottom.equalToSuperview().offset(-20)
         }
     }
-    
-//    func apply3DEffect() {
-//        let rotationAngle = CGFloat(-15.0 * .pi / 180.0)
-//        var transform = CATransform3DIdentity
-//        transform.m34 = -1 / 1000 
-//        transform = CATransform3DRotate(transform, rotationAngle, 1, 0, 0)
-//        cellView.layer.transform = transform
-//        cellView.layer.shadowColor = UIColor.black.cgColor
-//        cellView.layer.shadowOpacity = 0.5
-//        cellView.layer.shadowOffset = CGSize(width: 0, height: 10)
-//        cellView.layer.shadowRadius = 10
-//    }
-    
+
     func set(exchange_name: ExchangesModel) {
         nameOfExchange.text = exchange_name.nameOfExchange
         addressOfExchange.text = exchange_name.address

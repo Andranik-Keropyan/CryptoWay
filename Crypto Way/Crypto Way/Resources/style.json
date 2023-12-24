@@ -61,7 +61,7 @@
     "elementType": "all",
     "stylers": [
       {
-        "color": "#08304b"
+        "color": "#212246"
       }
     ]
   },
@@ -70,7 +70,7 @@
     "elementType": "geometry",
     "stylers": [
       {
-        "color": "#0c4152"
+        "color": "#161730"
       },
       {
         "lightness": 5
@@ -133,7 +133,7 @@
     "elementType": "all",
     "stylers": [
       {
-        "color": "#146474"
+        "color": "#161730"
       }
     ]
   },

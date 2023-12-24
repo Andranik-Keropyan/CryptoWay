@@ -33,8 +33,6 @@ class NewsTableViewCell: UITableViewCell {
         myStack.layer.cornerRadius = 10
         myStack.layer.borderWidth = 1.0
         myStack.backgroundColor = UIColor.hexStringToUIColor(hex: "#212246")
-
-//        myStack.layer.borderColor = UIColor.green.cgColor
         return myStack
     } ()
     
@@ -110,10 +108,7 @@ class NewsTableViewCell: UITableViewCell {
             make.trailing.equalTo(stackView.snp.trailing).offset(-20)
             make.top.equalTo(stackView.snp.top).offset(20)
         }
-//        nameOfDescription.snp.makeConstraints { make in
-//            make.leading.equalTo(stackView.snp.leading).offset(20)
-//            make.trailing.equalTo(stackView.snp.trailing).offset(-20)
-//        }
+
         imageOfNews.snp.makeConstraints { make in
             make.leading.equalTo(stackView.snp.leading).offset(20)
             make.trailing.equalTo(stackView.snp.trailing).offset(-20)
@@ -135,7 +130,6 @@ class NewsTableViewCell: UITableViewCell {
     func makeLayouts() {
         contentView.addSubview(stackView)
         stackView.addArrangedSubview(nameOfTitle)
-//        stackView.addArrangedSubview(nameOfDescription)
         stackView.addArrangedSubview(imageOfNews)
         stackView.addSubview(scrollToTopButton)
         imageOfNews.addSubview(spinner)

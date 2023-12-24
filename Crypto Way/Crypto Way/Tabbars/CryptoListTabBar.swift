@@ -191,7 +191,6 @@ extension CryptoList: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! ListCryptoViewCell
-//        cell.cellView.backgroundColor = UIColor.hexStringToUIColor(hex: "#696AAD")
 
         UIView.animate(withDuration: 0.2, animations: {
             cell.transform = CGAffineTransform(scaleX: 0.97, y: 0.97)}, completion: { finished in
@@ -200,10 +199,5 @@ extension CryptoList: UITableViewDataSource {
             })
         tableOfCrypto.deselectRow(at: indexPath, animated: true)
     }
-//    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-//         let cell = tableView.cellForRow(at: indexPath) as! ListCryptoViewCell
-//
-//         cell.cellView.backgroundColor = UIColor.hexStringToUIColor(hex: "#212246")
-//     }
-    
+
 }
